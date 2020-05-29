@@ -92,6 +92,7 @@ public class ModuleManager
         Add(new AutoSignModule());
         Add(new AutoTameModule());
         Add(new AutoTendModule());
+        Add(new BlueTReplacerModule());
         Add(new BuildHeightModule());
         Add(new ChatModificationsModule());
         Add(new ChatNotifierModule());
@@ -115,6 +116,7 @@ public class ModuleManager
         Add(new BlinkModule());
         Add(new ElytraFlyModule());
         Add(new EntityControlModule());
+        Add(new FasterSpeedModule());
         Add(new FlightModule());
         Add(new NoFallModule());
         Add(new NoRotateModule());
