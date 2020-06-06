@@ -22,7 +22,7 @@ public final class SpeedyGonzales extends Module
     public final Value<Mode> mode = new Value<Mode>("Mode", new String[]
     { "Mode", "M" }, "The speed-mine mode to use.", Mode.Instant);
     public final Value<Float> Speed = new Value<Float>("Speed", new String[]
-    { "S" }, "Speed for Bypass Mode", 1.0f, 0.0f, 1.0f, 0.1f);
+    { "S" }, "Speed for Bypass Mode", 1.0f, 0.0f, 2.0f, 0.05f);
 
     private enum Mode
     {
