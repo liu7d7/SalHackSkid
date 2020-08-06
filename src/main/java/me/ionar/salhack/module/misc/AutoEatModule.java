@@ -24,6 +24,8 @@ public class AutoEatModule extends Module
 
     private boolean m_WasEating = false;
 
+
+
     @Override
     public void onDisable()
     {

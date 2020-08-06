@@ -84,6 +84,7 @@ public class ModuleManager
         Add(new AutoEatModule());
         Add(new AutoDyeModule());
         Add(new AutoFarmlandModule());
+        Add(new AutoGapModule());
         Add(new AutoMendArmorModule());
         Add(new AutoMountModule());
         Add(new AutoReconnectModule());
@@ -91,7 +92,7 @@ public class ModuleManager
         Add(new AutoShovelPathModule());
         Add(new AutoSignModule());
         Add(new AutoTameModule());
-        Add(new AutoTendModule());
+        //Add(new AutoTendModule());
         Add(new BlueTReplacerModule());
         Add(new BuildHeightModule());
         Add(new ChatModificationsModule());
@@ -113,6 +114,7 @@ public class ModuleManager
         /// Movement
         Add(new AntiLevitationModule());
         Add(new AutoWalkModule());
+        Add(new BetterYawModule());
         Add(new BlinkModule());
         Add(new ElytraFlyModule());
         Add(new EntityControlModule());
@@ -175,6 +177,7 @@ public class ModuleManager
         Add(new NoGlitchBlocksModule());
         Add(new NoWeatherModule());
         Add(new NukerModule());
+        Add(new NukerBypassModule());
         Add(new ScaffoldModule());
         Add(new SpeedyGonzales());
         Add(new StashFinderModule());

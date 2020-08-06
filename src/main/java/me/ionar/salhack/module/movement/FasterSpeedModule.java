@@ -30,7 +30,7 @@ public class FasterSpeedModule extends Module
     public final Value<Boolean> SpeedInWater = new Value<Boolean>("SpeedInWater", new String[] {"SpeedInWater"}, "Speeds in water", false);
     public final Value<Boolean> AutoJump = new Value<Boolean>("AutoJump", new String[] {"AutoJump"}, "Automatically jumps", true);
     public final Value<Boolean> Strict = new Value<Boolean>("Strict", new String[] {"Strict"}, "Strict mode, use this for when hauses patch comes back for strafe", false);
-    public final Value<Float> Multiplier = new Value<Float>("Multiplier", new String[] {"Mult"}, "Multiplication of vanilla speed", 0.25f, 0.0f, 5.0f, 0.05f);
+    public final Value<Float> Multiplier = new Value<Float>("Multiplier", new String[] {"Mult"}, "Multiplication of vanilla speed", 0.25f, 0.0f, 0.5f, 0.005f);
 
     public enum Modes
     {
