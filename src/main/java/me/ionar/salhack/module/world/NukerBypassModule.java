@@ -39,7 +39,8 @@ public class NukerBypassModule extends Module
         threeXthree,
         twoXthree,
         oneXthree,
-        Highway,
+        Highway3,
+        Highway4,
     }
 
     public NukerBypassModule()
@@ -230,11 +231,54 @@ public class NukerBypassModule extends Module
                 }
             }
         }
-        else if (Block.getValue() == Blahks.Highway) {
+        else if (Block.getValue() == Blahks.Highway3) {
             BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
             if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
 
-                for (BlockPos pos : BlockInteractionHelper.getHighway()) {
+                for (BlockPos pos : BlockInteractionHelper.getHighway3()) {
+                    if (Flatten.getValue() && pos.getY() < flooredPos.getY())
+                        continue;
+
+                    IBlockState state = mc.world.getBlockState(pos);
+
+                    if (ClickSelect.getValue()) {
+                        if (_clickSelectBlock != null) {
+                            if (state.getBlock() != _clickSelectBlock)
+                                continue;
+                        }
+                    }
+
+                    if (Mode.getValue() == Modes.Creative) {
+                        mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
+                        _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+                        continue;
+                    }
+
+                    if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                        continue;
+
+
+                    if (selectedBlock == null) {
+                        selectedBlock = pos;
+                        continue;
+                    } else {
+                        double dist = pos.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+
+                        if (selectedBlock.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ) < dist)
+                            continue;
+
+                        if (dist <= Range.getValue())
+                            selectedBlock = pos;
+                    }
+
+                }
+            }
+        }
+        else if (Block.getValue() == Blahks.Highway4) {
+            BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
+            if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
+
+                for (BlockPos pos : BlockInteractionHelper.getHighway4()) {
                     if (Flatten.getValue() && pos.getY() < flooredPos.getY())
                         continue;
 
