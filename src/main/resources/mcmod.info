@@ -1,12 +1,10 @@
 [
     {
-      "modid": "salhack",
-      "name": "SalHack",
-      "description": "SalHack utility mod.",
+      "modid": "SalHackSkid",
+      "name": "SalHackSkid",
+      "description": "SalHackSkid utility mod.",
       "version": "${modVersion}",
       "mcversion": "${version_minecraft}",
-      "url": "https://salhack.com",
-      "updateUrl": "https://salhack.com",
       "authorList": ["ionar"],
       "credits": "ionar",
       "logoFile": "assets/salhack/imgs/SalHackWatermark.png",

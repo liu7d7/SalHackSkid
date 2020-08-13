@@ -71,6 +71,8 @@ public class AutoBuilderModule extends Module
         Wall,
         HighwayWall,
         Stair,
+        HighwayThing,
+        NewFlat,
     }
     
     public enum BuildingModes
@@ -683,6 +685,48 @@ public class AutoBuilderModule extends Module
                     }
                 
                 break;
+            case HighwayThing:
+
+                switch (PlayerUtil.GetFacing())
+                {
+                    case East:
+                        interpPos = new BlockPos(pos.x, pos.y, pos.z).east().east();
+                        BlockArray.add(interpPos.down());
+                        BlockArray.add(interpPos.down().east());
+                        BlockArray.add(interpPos.down().east().east());
+                        BlockArray.add(interpPos.down().east().east().east());
+                        break;
+                    case North:
+                        interpPos = new BlockPos(pos.x, pos.y, pos.z).north().north();
+                        BlockArray.add(interpPos.down());
+                        BlockArray.add(interpPos.down().north());
+                        BlockArray.add(interpPos.down().north().north());
+                        BlockArray.add(interpPos.down().north().north().north());
+                        break;
+                    case South:
+                        interpPos = new BlockPos(pos.x, pos.y, pos.z).south().south();
+                        BlockArray.add(interpPos.down());
+                        BlockArray.add(interpPos.down().south());
+                        BlockArray.add(interpPos.down().south().south());
+                        BlockArray.add(interpPos.down().south().south().south());
+                        break;
+                    case West:
+                        interpPos = new BlockPos(pos.x, pos.y, pos.z).south().south();
+                        BlockArray.add(interpPos.down());
+                        BlockArray.add(interpPos.down().west());
+                        BlockArray.add(interpPos.down().west().west());
+                        BlockArray.add(interpPos.down().west().west().west());
+                        break;
+                    default:
+                        break;
+                }
+            case NewFlat:
+
+                for (int l_X = -3; l_X <= 3; ++l_X)
+                    for (int l_Y = -3; l_Y <= 3; ++l_Y)
+                    {
+                        BlockArray.add(orignPos.down().add(l_X, 0, 0));
+                    }
             case Cover:
                 if (p_Pair == null)
                     return;

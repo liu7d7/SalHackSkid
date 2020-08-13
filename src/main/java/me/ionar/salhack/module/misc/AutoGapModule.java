@@ -32,6 +32,7 @@ public class AutoGapModule extends Module
     }
 
     private boolean m_WasEating = false;
+    private boolean m_FireRes = false;
     private boolean needToEat = false;
     private Timer eatTimer = new Timer();
 
@@ -51,7 +52,8 @@ public class AutoGapModule extends Module
     @EventHandler
     private Listener<EventPlayerUpdate> OnPlayerUpdate = new Listener<>(p_Event ->
     {
-        if (!mc.player.isPotionActive(FIRE_RESISTANCE) && !m_WasEating)
+        m_FireRes = mc.player.isPotionActive(FIRE_RESISTANCE);
+        if (m_FireRes && !m_WasEating)
         {
             for (int l_I = 0; l_I < 9; ++l_I)
             {
@@ -61,6 +63,7 @@ public class AutoGapModule extends Module
                 mc.playerController.updateController();
                 break;
             }
+            m_FireRes = mc.player.isPotionActive(FIRE_RESISTANCE);
 
             if (mc.currentScreen == null) {
                 if (NukerToOverride.getValue() == Modes.Nuker) {
@@ -71,7 +74,9 @@ public class AutoGapModule extends Module
                     ModuleManager.Get().GetMod(NukerBypassModule.class).setEnabled(false);
                     ModuleManager.Get().GetMod(AutoWalkModule.class).setEnabled(false);
                 }
+                m_WasEating = false;
                 mc.gameSettings.keyBindUseItem.pressed = true;
+                return;
             }
             else {
                 mc.playerController.processRightClick(mc.player, mc.world, EnumHand.MAIN_HAND);

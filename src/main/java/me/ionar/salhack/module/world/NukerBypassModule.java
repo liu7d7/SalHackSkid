@@ -27,11 +27,19 @@ public class NukerBypassModule extends Module
     public final Value<Boolean> Rotates = new Value<Boolean>("Rotates", new String[] {"R"}, "Rotates towards selected blocks, you won't bypass NCP without this", true);
     public final Value<Boolean> Raytrace = new Value<Boolean>("Raytrace", new String[] {"Ray"}, "Performs a raytrace calculation in order to determine the best facing towards the block", true);
     public final Value<Float> Range = new Value<Float>("Range", new String[] {"Range"}, "The range to search for blocks", 3.0f, 0.0f, 10.0f, 1.0f);
-    public final Value<Float> Block = new Value<Float>("Blocks", new String[] {"Range"}, "3x3 is 1, 1x3 is 2, 2x3 is 3", 1.0f, 1.0f, 3.0f, 1.0f);
+    public final Value<Blahks> Block = new Value<Blahks>("Blocks", new String[] {"Range"}, "Blocks", Blahks.threeXthree);
     public enum Modes
     {
         Survival,
         Creative,
+    }
+
+    public enum Blahks
+    {
+        threeXthree,
+        twoXthree,
+        oneXthree,
+        Highway,
     }
 
     public NukerBypassModule()
@@ -98,7 +106,7 @@ public class NukerBypassModule extends Module
         final float range = Range.getValue();
 
         final BlockPos flooredPos = PlayerUtil.GetLocalPlayerPosFloored();
-        if (Block.getValue() == 1) {
+        if (Block.getValue() == Blahks.threeXthree) {
             for (BlockPos pos : BlockInteractionHelper.getCube()) {
                 if (Flatten.getValue() && pos.getY() < flooredPos.getY())
                     continue;
@@ -139,7 +147,7 @@ public class NukerBypassModule extends Module
 
             }
         }
-         else if (Block.getValue() == 2) {
+         else if (Block.getValue() == Blahks.oneXthree) {
             for (BlockPos pos : BlockInteractionHelper.get1x3()) {
                 if (Flatten.getValue() && pos.getY() < flooredPos.getY())
                     continue;
@@ -179,11 +187,54 @@ public class NukerBypassModule extends Module
 
             }
         }
-        else if (Block.getValue() == 3) {
+        else if (Block.getValue() == Blahks.twoXthree) {
             BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
             if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
 
                 for (BlockPos pos : BlockInteractionHelper.get2x3()) {
+                    if (Flatten.getValue() && pos.getY() < flooredPos.getY())
+                        continue;
+
+                    IBlockState state = mc.world.getBlockState(pos);
+
+                    if (ClickSelect.getValue()) {
+                        if (_clickSelectBlock != null) {
+                            if (state.getBlock() != _clickSelectBlock)
+                                continue;
+                        }
+                    }
+
+                    if (Mode.getValue() == Modes.Creative) {
+                        mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
+                        _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+                        continue;
+                    }
+
+                    if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                        continue;
+
+
+                    if (selectedBlock == null) {
+                        selectedBlock = pos;
+                        continue;
+                    } else {
+                        double dist = pos.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+
+                        if (selectedBlock.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ) < dist)
+                            continue;
+
+                        if (dist <= Range.getValue())
+                            selectedBlock = pos;
+                    }
+
+                }
+            }
+        }
+        else if (Block.getValue() == Blahks.Highway) {
+            BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
+            if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
+
+                for (BlockPos pos : BlockInteractionHelper.getHighway()) {
                     if (Flatten.getValue() && pos.getY() < flooredPos.getY())
                         continue;
 
