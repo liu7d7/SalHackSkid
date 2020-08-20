@@ -61,7 +61,7 @@ public class AlwaysEnabledModule implements Listenable
             {
                 if (packet.getAction() == SPacketPlayerListItem.Action.ADD_PLAYER)
                 {
-                    packet.getEntries().forEach(playerData ->
+                    /*packet.getEntries().forEach(playerData ->
                     {
                         if (playerData.getProfile().getId() != mc.session.getProfile().getId())
                         {
@@ -72,11 +72,11 @@ public class AlwaysEnabledModule implements Listenable
                                     SalHackMod.EVENT_BUS.post(new EventPlayerJoin(name, playerData.getProfile().getId().toString()));
                             }).start();
                         }
-                    });
+                    });*/
                 }
                 if (packet.getAction() == SPacketPlayerListItem.Action.REMOVE_PLAYER)
                 {
-                    packet.getEntries().forEach(playerData ->
+                    /*packet.getEntries().forEach(playerData ->
                     {
                         if (playerData.getProfile().getId() != mc.session.getProfile().getId())
                         {
@@ -87,7 +87,7 @@ public class AlwaysEnabledModule implements Listenable
                                     SalHackMod.EVENT_BUS.post(new EventPlayerLeave(name, playerData.getProfile().getId().toString()));
                             }).start();
                         }
-                    });
+                    });*/
                 }
             }
         }

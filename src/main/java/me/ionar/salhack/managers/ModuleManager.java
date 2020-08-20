@@ -54,6 +54,7 @@ public class ModuleManager
         Add(new AutoTotemModule());
         Add(new AutoTrap());
         Add(new AutoTrapFeet());
+        Add(new BedAuraModule());
         Add(new BowSpamModule());
         Add(new CriticalsModule());
         Add(new HoleFillerModule());
@@ -168,6 +169,7 @@ public class ModuleManager
         
         /// World
         Add(new AutoBuilderModule());
+        Add(new AutoRemoveLava());
         Add(new AutoNameTagModule());
         Add(new AutoToolModule());
         Add(new AutoTunnelModule());
