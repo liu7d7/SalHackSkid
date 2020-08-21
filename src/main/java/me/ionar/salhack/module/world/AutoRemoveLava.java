@@ -33,6 +33,6 @@ public class AutoRemoveLava extends Module {
 
 
     public AutoRemoveLava() {
-        super("AutoRemoveLava", new String[]{"LavaRemover"}, "Automatically places netherrack on lava source blocks", "NONE", 0xFFFB11, ModuleType.WORLD);
+        super("AutoRemoveLava", new String[]{"LavaRemover"}, "Automatically places netherrack on lava source blocks **NOT FUNCTIONAL**", "NONE", 0xFFFB11, ModuleType.WORLD);
     }
 }
