@@ -45,6 +45,7 @@ public class ModuleManager
         /// Combat
         Add(new AnchorSurround());
         Add(new AnchorTrap());
+        Add(new AnchorTrapFeet());
         Add(new AimbotModule());
         Add(new AntiBots());
         Add(new AntiCityBossModule());
