@@ -1,4 +1,6 @@
-Ethius is the group that made the modifications to salhack and created this thing.
+r333mo making SalHackSkid_skid, a fork of SalHackSkid.
+
+Ethius is the group that made the modifications to salhack and created SalHackSkid.
 
 ## Salhack
 Salhack is a Forge mod made by ionar. Recently, ionar has made the decision to leave the project, and as such, this project is discontinued without a main developer. And therefore someone that wanted to buid the higway system on endcrystal.me decided to make this thing.
