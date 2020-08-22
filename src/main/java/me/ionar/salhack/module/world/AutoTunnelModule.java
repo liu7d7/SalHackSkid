@@ -64,7 +64,7 @@ public class AutoTunnelModule extends Module
     
     public AutoTunnelModule()
     {
-        super("AutoTunnel", new String[] {""}, "Automatically mines different kind of 2d tunnels, in the direction you're facing", "NONE", -1, ModuleType.WORLD);
+        super("AutoTunnel", new String[] {""}, "Automatically mines different kind of 2d tunnels, in the direction you're facing", "NONE", -1, ModuleType.HIGHWAY);
     }
     
     private List<BlockPos> _blocksToDestroy = new CopyOnWriteArrayList<>();

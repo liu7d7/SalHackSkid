@@ -84,7 +84,7 @@ public class AutoBuilderModule extends Module
     public AutoBuilderModule()
     {
         super("AutoBuilder", new String[]
-        { "AutoSwastika" }, "Builds cool things at your facing block", "NONE", 0x96DB24, ModuleType.WORLD);
+        { "AutoSwastika" }, "Builds cool things at your facing block", "NONE", 0x96DB24, ModuleType.HIGHWAY);
     }
     
     private Vec3d Center = Vec3d.ZERO;

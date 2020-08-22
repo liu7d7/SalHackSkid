@@ -46,7 +46,7 @@ public class NukerBypassModule extends Module
 
     public NukerBypassModule()
     {
-        super("NukerBypass", new String[] {"NukerBypass"}, "Attempting to fix packet spam kick on nuker", "NONE", -1, ModuleType.WORLD);
+        super("NukerBypass", new String[] {"NukerBypass"}, "Attempting to fix packet spam kick on nuker", "NONE", -1, ModuleType.HIGHWAY);
     }
 
     private Block _clickSelectBlock = null;

@@ -272,6 +272,7 @@ public class BlockInteractionHelper
                     cubeBlocks.add(playerPos.east());
                     cubeBlocks.add(playerPos.east().up());
                     cubeBlocks.add(playerPos.east().up().up());
+
                     playerPos = new BlockPos(playerPos).east();
                 }
                 break;

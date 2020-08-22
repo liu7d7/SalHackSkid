@@ -12,6 +12,7 @@ import me.ionar.salhack.module.ui.ClickGuiModule;
 import me.ionar.salhack.module.ui.ColorsModule;
 import me.ionar.salhack.util.imgs.SalDynamicTexture;
 import me.ionar.salhack.util.render.AbstractGui;
+import me.ionar.salhack.module.ui.ColorsForBordersModule;
 import me.ionar.salhack.util.render.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -132,9 +133,13 @@ public class MenuComponent
             }
         }
         
-        RenderUtil.drawGradientRect(GetX(), GetY()+17-p_OffsetY, GetX()+GetWidth(), GetY()+GetHeight(), 0x992A2A2A, 0x992A2A2A);
-
-        RenderUtil.drawRect(GetX(), GetY()-p_OffsetY, GetX() + GetWidth(), GetY() + 17-p_OffsetY, 0x99000000); /// top
+        //RenderUtil.drawOutlineRect(GetX()+10, GetY()+17-p_OffsetY+10, GetX()+GetWidth()-10, GetY()+GetHeight()-10, 10, 0x99333cc4);
+        //RenderUtil.drawRect(GetX(), GetY()+17-p_OffsetY, GetX()+GetWidth(), GetY()+GetHeight(), 0x99333cc4);
+        RenderUtil.drawRect(GetX(), GetY() + 13 - p_OffsetY, GetX() + 1, GetY() + GetHeight(), 0xff333cc4); //vertical left
+        RenderUtil.drawRect(GetX() + GetWidth() - 1, GetY() + 13 - p_OffsetY, GetX() + GetWidth(), GetY() + GetHeight(), 0xff333cc4); //vertical right
+        RenderUtil.drawRect(GetX(), GetY() + 13 - p_OffsetY, GetX() + GetWidth(), GetY() + 14 - p_OffsetY, 0xff333cc4); //horizontal top
+        RenderUtil.drawRect(GetX(), GetY() + GetHeight() - 1, GetX() + GetWidth(), GetY() + GetHeight(), 0xff333cc4); //horizontal bottom
+        RenderUtil.drawGradientRect(GetX(), GetY() - p_OffsetY, GetX() + GetWidth(), GetY() + 13 - p_OffsetY, 0xff333cc4, 0xff333cc4); /// top
         FontManager.Get().TwCenMtStd28.drawStringWithShadow(GetDisplayName(), GetX() + 2, GetY() + 1-p_OffsetY, GetTextColor());
 
         

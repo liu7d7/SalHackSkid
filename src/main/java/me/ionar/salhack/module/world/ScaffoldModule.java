@@ -44,7 +44,7 @@ public class ScaffoldModule extends Module
     public ScaffoldModule()
     {
         super("Scaffold", new String[]
-        { "Scaffold" }, "Places blocks under you", "NONE", 0x36DB24, ModuleType.WORLD);
+        { "Scaffold" }, "Places blocks under you", "NONE", 0x36DB24, ModuleType.HIGHWAY);
     }
     
     private Timer _timer = new Timer();
