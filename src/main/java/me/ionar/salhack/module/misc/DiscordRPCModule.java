@@ -81,7 +81,7 @@ public class DiscordRPCModule extends Module
         String result = "";
         
         if (Crystalling.getValue() && _autoCrystal.isEnabled() && _autoCrystal.getTarget() != null)
-            return "Crystalling " + _autoCrystal.getTarget() + " with SalHack's autocrystal!";
+            return "Crystalling " + _autoCrystal.getTarget() + " with SalHackSkid_skid's autocrystal!";
         
         if (Movement.getValue())
         {

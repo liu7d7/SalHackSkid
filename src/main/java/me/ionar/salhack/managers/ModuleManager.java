@@ -58,6 +58,7 @@ public class ModuleManager
         Add(new AutoTrap());
         Add(new AutoTrapFeet());
         Add(new BedAuraModule());
+        //Add(new BedAuraRewrite());
         Add(new BowSpamModule());
         Add(new CriticalsModule());
         Add(new HoleFillerModule());
