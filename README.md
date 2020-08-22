@@ -1,21 +1,18 @@
-Ethius is the group that made the modifications to salhack and created this thing.
-
-## Salhack
-Salhack is a Forge mod made by ionar. Recently, ionar has made the decision to leave the project, and as such, this project is discontinued without a main developer. And therefore someone that wanted to buid the higway system on endcrystal.me decided to make this thing.
-
-CleanMiner is maintained.
- 
-## Installation
-
-CleanMinder is a forge mod for `1.12.2` that was based off Salhack. We provide already pre build jar files on our [release page](https://github.com/ionar2/salhack/releases). If you want to have changes before they get officially released check our [CI](https://github.com/ionar2/salhack/actions) out. (It builds a new jar file on every change we make.) To use salhack just drop the jar file in your mods folder and start forge. Have fun!
-
-**Tip:** You can open the GUI containing all "tweaks" with your left arrow at default (You can change that later.)
-
-## Support
-
-If you have a bug or want to suggest a feature raise an issue on Github or contact us via our Discord server.
-
 ## Info
+
+r333mo making SalHackSkid_skid, a fork of SalHackSkid.
+
+Ethius is the group that made the modifications to SalHack and created SalHackSkid.
+
+SalHack was created my Ionar. Project no longer maintained.
+
+
+## Installation
+ 
+Build it youself and run as forge mod. Use in 1.12.2. GUI key default is left arrow.
+
+
+## Extra Info (SalHack)
 
 Some of the code is pasted and proper credits are not given, but atleast it's open source now? :)
 
