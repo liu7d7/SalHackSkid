@@ -39,7 +39,7 @@ public final class SpeedyGonzales extends Module
     public SpeedyGonzales()
     {
         super("SpeedyGonzales", new String[]
-        { "Speedy Gonzales" }, "Allows you to break blocks faster", "NONE", 0x24DB60, ModuleType.WORLD);
+        { "Speedy Gonzales" }, "Allows you to break blocks faster", "NONE", 0x24DB60, ModuleType.HIGHWAY);
     }
 
     @Override

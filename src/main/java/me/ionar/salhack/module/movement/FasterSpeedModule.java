@@ -41,7 +41,7 @@ public class FasterSpeedModule extends Module
     public FasterSpeedModule()
     {
         super("FasterSpeed", new String[]
-                { "Strafe" }, "Speed strafe", "NONE", 0xDB2468, ModuleType.MOVEMENT);
+                { "Strafe" }, "Speed strafe", "NONE", 0xDB2468, ModuleType.HIGHWAY);
     }
 
     private TimerModule Timer = null;

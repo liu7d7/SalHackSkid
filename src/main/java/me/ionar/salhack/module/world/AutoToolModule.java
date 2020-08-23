@@ -34,7 +34,7 @@ public final class AutoToolModule extends Module
     public AutoToolModule()
     {
         super("AutoTool", new String[]
-        { "Tool" }, "Automatically switches to the best tool", "NONE", 0x70DB24, ModuleType.WORLD);
+        { "Tool" }, "Automatically switches to the best tool", "NONE", 0x70DB24, ModuleType.HIGHWAY);
     }
 
     private boolean send;

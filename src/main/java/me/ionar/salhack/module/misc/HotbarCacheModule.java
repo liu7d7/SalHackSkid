@@ -27,7 +27,7 @@ public class HotbarCacheModule extends Module
     
     public HotbarCacheModule()
     {
-        super("HotbarCache", new String[] {"HC"}, "Automatically refills your hotbar similar to how autototem works", "NONE", 0xB324DB, ModuleType.MISC);
+        super("HotbarCache", new String[] {"HC"}, "Automatically refills your hotbar similar to how autototem works", "NONE", 0xB324DB, ModuleType.HIGHWAY);
     }
     
     private ArrayList<Item> Hotbar = new ArrayList<Item>();

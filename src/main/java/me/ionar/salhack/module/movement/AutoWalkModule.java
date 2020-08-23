@@ -12,7 +12,7 @@ public final class AutoWalkModule extends Module
     public AutoWalkModule()
     {
         super("AutoWalk", new String[]
-        { "AW" }, "Automatically walks forward", "NONE", 0xC224DB, ModuleType.MOVEMENT);
+        { "AW" }, "Automatically walks forward", "NONE", 0xC224DB, ModuleType.HIGHWAY);
     }
     
     private AutoTunnelModule _autoTunnel;

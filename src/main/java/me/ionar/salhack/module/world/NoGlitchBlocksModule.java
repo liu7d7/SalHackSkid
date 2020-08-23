@@ -17,7 +17,7 @@ public class NoGlitchBlocksModule extends Module
     public NoGlitchBlocksModule()
     {
         super("NoGlitchBlocks", new String[]
-                { "AntiGhostBlocks" }, "Synchronizes client and server communication by canceling clientside destroy/place for blocks", "NONE", -1, ModuleType.WORLD);
+                { "AntiGhostBlocks" }, "Synchronizes client and server communication by canceling clientside destroy/place for blocks", "NONE", -1, ModuleType.HIGHWAY);
     }
 
     /*@EventHandler

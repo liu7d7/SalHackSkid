@@ -84,7 +84,7 @@ public class AutoBuilderModule extends Module
     public AutoBuilderModule()
     {
         super("AutoBuilder", new String[]
-        { "AutoSwastika" }, "Builds cool things at your facing block", "NONE", 0x96DB24, ModuleType.WORLD);
+        { "AutoSwastika" }, "Builds cool things at your facing block", "NONE", 0x96DB24, ModuleType.HIGHWAY);
     }
     
     private Vec3d Center = Vec3d.ZERO;
@@ -440,50 +440,38 @@ public class AutoBuilderModule extends Module
                     case East:
                         BlockArray.add(orignPos.down());
                         BlockArray.add(orignPos.down().east());
-                        BlockArray.add(orignPos.down().east().north());
                         BlockArray.add(orignPos.down().east().south());
-                        BlockArray.add(orignPos.down().east().north().north());
-                        BlockArray.add(orignPos.down().east().south().south());
-                        BlockArray.add(orignPos.down().east().north().north().north());
-                        BlockArray.add(orignPos.down().east().south().south().south());
-                        BlockArray.add(orignPos.down().east().north().north().north().up());
-                        BlockArray.add(orignPos.down().east().south().south().south().up());
+                        BlockArray.add(orignPos.down().east().south(2).up());
+                        BlockArray.add(orignPos.down().east().north());
+                        BlockArray.add(orignPos.down().east().north(2));
+                        BlockArray.add(orignPos.down().east().north(3).up());
                         break;
                     case North:
                         BlockArray.add(orignPos.down());
-                        BlockArray.add(orignPos.down().north());
-                        BlockArray.add(orignPos.down().north().east());
-                        BlockArray.add(orignPos.down().north().west());
-                        BlockArray.add(orignPos.down().north().east().east());
-                        BlockArray.add(orignPos.down().north().west().west());
-                        BlockArray.add(orignPos.down().north().east().east().east());
-                        BlockArray.add(orignPos.down().north().west().west().west());
-                        BlockArray.add(orignPos.down().north().east().east().east().up());
-                        BlockArray.add(orignPos.down().north().west().west().west().up());
+                        BlockArray.add(orignPos.down().south());
+                        BlockArray.add(orignPos.down().south().east());
+                        BlockArray.add(orignPos.down().south().east(2).up());
+                        BlockArray.add(orignPos.down().south().west());
+                        BlockArray.add(orignPos.down().south().west(2));
+                        BlockArray.add(orignPos.down().south().west(3).up());
                         break;
                     case South:
                         BlockArray.add(orignPos.down());
                         BlockArray.add(orignPos.down().south());
-                        BlockArray.add(orignPos.down().south().east());
                         BlockArray.add(orignPos.down().south().west());
-                        BlockArray.add(orignPos.down().south().east().east());
-                        BlockArray.add(orignPos.down().south().west().west());
-                        BlockArray.add(orignPos.down().south().east().east().east());
-                        BlockArray.add(orignPos.down().south().west().west().west());
-                        BlockArray.add(orignPos.down().south().east().east().east().up());
-                        BlockArray.add(orignPos.down().south().west().west().west().up());
+                        BlockArray.add(orignPos.down().south().west(2).up());
+                        BlockArray.add(orignPos.down().south().east());
+                        BlockArray.add(orignPos.down().south().east(2));
+                        BlockArray.add(orignPos.down().south().east(3).up());
                         break;
                     case West:
                         BlockArray.add(orignPos.down());
-                        BlockArray.add(orignPos.down().west());
-                        BlockArray.add(orignPos.down().west().north());
-                        BlockArray.add(orignPos.down().west().south());
-                        BlockArray.add(orignPos.down().west().north().north());
-                        BlockArray.add(orignPos.down().west().south().south());
-                        BlockArray.add(orignPos.down().west().north().north().north());
-                        BlockArray.add(orignPos.down().west().south().south().south());
-                        BlockArray.add(orignPos.down().west().north().north().north().up());
-                        BlockArray.add(orignPos.down().west().south().south().south().up());
+                        BlockArray.add(orignPos.down().east());
+                        BlockArray.add(orignPos.down().east().north());
+                        BlockArray.add(orignPos.down().east().north(2).up());
+                        BlockArray.add(orignPos.down().east().south());
+                        BlockArray.add(orignPos.down().east().south(2));
+                        BlockArray.add(orignPos.down().east().south(3).up());
                         break;
                     default:
                         break;

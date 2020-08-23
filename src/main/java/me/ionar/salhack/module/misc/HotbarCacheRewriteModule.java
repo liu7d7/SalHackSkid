@@ -31,7 +31,7 @@ public class HotbarCacheRewriteModule extends Module
 
     public HotbarCacheRewriteModule()
     {
-        super("HotbarCacheRewrite", new String[] {"HC"}, "Automatically refills your hotbar similar to how autototem works", "NONE", 0xB324DB, ModuleType.MISC);
+        super("HotbarCacheRewrite", new String[] {"HC"}, "Automatically refills your hotbar similar to how autototem works", "NONE", 0xB324DB, ModuleType.HIGHWAY);
     }
 
 

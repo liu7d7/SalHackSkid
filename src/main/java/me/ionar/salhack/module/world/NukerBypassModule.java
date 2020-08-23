@@ -39,13 +39,14 @@ public class NukerBypassModule extends Module
         threeXthree,
         twoXthree,
         oneXthree,
+        Highway2,
         Highway3,
         Highway4,
     }
 
     public NukerBypassModule()
     {
-        super("NukerBypass", new String[] {"NukerBypass"}, "Attempting to fix packet spam kick on nuker", "NONE", -1, ModuleType.WORLD);
+        super("NukerBypass", new String[] {"NukerBypass"}, "Attempting to fix packet spam kick on nuker", "NONE", -1, ModuleType.HIGHWAY);
     }
 
     private Block _clickSelectBlock = null;
@@ -107,96 +108,16 @@ public class NukerBypassModule extends Module
         final float range = Range.getValue();
 
         final BlockPos flooredPos = PlayerUtil.GetLocalPlayerPosFloored();
-        if (Block.getValue() == Blahks.threeXthree) {
-            for (BlockPos pos : BlockInteractionHelper.getCube()) {
-                if (Flatten.getValue() && pos.getY() < flooredPos.getY())
-                    continue;
-
-                IBlockState state = mc.world.getBlockState(pos);
-
-                if (ClickSelect.getValue()) {
-                    if (_clickSelectBlock != null) {
-                        if (state.getBlock() != _clickSelectBlock)
-                            continue;
-                    }
-                }
-
-                if (Mode.getValue() == Modes.Creative)
-                {
-                    mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
-                    try { Thread.sleep(1); } catch (Exception e) {}
-                    continue;
-                }
-
-                if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
-                    continue;
-
-                if (selectedBlock == null) {
-                    selectedBlock = pos;
-                    continue;
-                }
-                else
-                {
-                    double dist = pos.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ);
-
-                    if (selectedBlock.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ) < dist)
-                        continue;
-
-                    if (dist <= Range.getValue())
-                        selectedBlock = pos;
-                }
-
-            }
-        }
-         else if (Block.getValue() == Blahks.oneXthree) {
-            for (BlockPos pos : BlockInteractionHelper.get1x3()) {
-                if (Flatten.getValue() && pos.getY() < flooredPos.getY())
-                    continue;
-
-                IBlockState state = mc.world.getBlockState(pos);
-
-                if (ClickSelect.getValue()) {
-                    if (_clickSelectBlock != null) {
-                        if (state.getBlock() != _clickSelectBlock)
-                            continue;
-                    }
-                }
-
-                if (Mode.getValue() == Modes.Creative)
-                {
-                    mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
-                    continue;
-                }
-
-                if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
-                    continue;
-
-                if (selectedBlock == null) {
-                    selectedBlock = pos;
-                    continue;
-                }
-                else
-                {
-                    double dist = pos.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ);
-
-                    if (selectedBlock.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ) < dist)
-                        continue;
-
-                    if (dist <= Range.getValue())
-                        selectedBlock = pos;
-                }
-
-            }
-        }
-        else if (Block.getValue() == Blahks.twoXthree) {
-            BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
-            if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
-
-                for (BlockPos pos : BlockInteractionHelper.get2x3()) {
+        switch (Block.getValue()) {
+            case threeXthree: {
+                for (BlockPos pos : BlockInteractionHelper.getCube()) {
                     if (Flatten.getValue() && pos.getY() < flooredPos.getY())
                         continue;
 
                     IBlockState state = mc.world.getBlockState(pos);
+
+                    if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                        continue;
 
                     if (ClickSelect.getValue()) {
                         if (_clickSelectBlock != null) {
@@ -207,13 +128,10 @@ public class NukerBypassModule extends Module
 
                     if (Mode.getValue() == Modes.Creative) {
                         mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
-                        _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
-                        continue;
                     }
 
                     if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
                         continue;
-
 
                     if (selectedBlock == null) {
                         selectedBlock = pos;
@@ -227,19 +145,18 @@ public class NukerBypassModule extends Module
                         if (dist <= Range.getValue())
                             selectedBlock = pos;
                     }
-
+                break;
                 }
             }
-        }
-        else if (Block.getValue() == Blahks.Highway3) {
-            BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
-            if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
-
-                for (BlockPos pos : BlockInteractionHelper.getHighway3()) {
+            case oneXthree: {
+                for (BlockPos pos : BlockInteractionHelper.get1x3()) {
                     if (Flatten.getValue() && pos.getY() < flooredPos.getY())
                         continue;
 
                     IBlockState state = mc.world.getBlockState(pos);
+
+                    if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                        continue;
 
                     if (ClickSelect.getValue()) {
                         if (_clickSelectBlock != null) {
@@ -250,13 +167,11 @@ public class NukerBypassModule extends Module
 
                     if (Mode.getValue() == Modes.Creative) {
                         mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
-                        _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
                         continue;
                     }
 
                     if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
                         continue;
-
 
                     if (selectedBlock == null) {
                         selectedBlock = pos;
@@ -270,50 +185,186 @@ public class NukerBypassModule extends Module
                         if (dist <= Range.getValue())
                             selectedBlock = pos;
                     }
-
+                break;
                 }
             }
-        }
-        else if (Block.getValue() == Blahks.Highway4) {
-            BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
-            if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
+            case twoXthree: {
+                BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
+                if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
 
-                for (BlockPos pos : BlockInteractionHelper.getHighway4()) {
-                    if (Flatten.getValue() && pos.getY() < flooredPos.getY())
-                        continue;
-
-                    IBlockState state = mc.world.getBlockState(pos);
-
-                    if (ClickSelect.getValue()) {
-                        if (_clickSelectBlock != null) {
-                            if (state.getBlock() != _clickSelectBlock)
-                                continue;
-                        }
-                    }
-
-                    if (Mode.getValue() == Modes.Creative) {
-                        mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
-                        _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
-                        continue;
-                    }
-
-                    if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
-                        continue;
-
-
-                    if (selectedBlock == null) {
-                        selectedBlock = pos;
-                        continue;
-                    } else {
-                        double dist = pos.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
-
-                        if (selectedBlock.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ) < dist)
+                    for (BlockPos pos : BlockInteractionHelper.get2x3()) {
+                        if (Flatten.getValue() && pos.getY() < flooredPos.getY())
                             continue;
 
-                        if (dist <= Range.getValue())
-                            selectedBlock = pos;
-                    }
+                        IBlockState state = mc.world.getBlockState(pos);
 
+                        if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                            continue;
+
+                        if (ClickSelect.getValue()) {
+                            if (_clickSelectBlock != null) {
+                                if (state.getBlock() != _clickSelectBlock)
+                                    continue;
+                            }
+                        }
+
+                        if (Mode.getValue() == Modes.Creative) {
+                            mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
+                            _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+                            continue;
+                        }
+
+                        if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                            continue;
+
+
+                        if (selectedBlock == null) {
+                            selectedBlock = pos;
+                            continue;
+                        } else {
+                            double dist = pos.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+
+                            if (selectedBlock.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ) < dist)
+                                continue;
+
+                            if (dist <= Range.getValue())
+                                selectedBlock = pos;
+                        }
+                    }
+                break;
+                }
+            }
+            case Highway3: {
+                BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
+                if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
+
+                    for (BlockPos pos : BlockInteractionHelper.getHighway3()) {
+
+                        IBlockState state = mc.world.getBlockState(pos);
+
+                        if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                            continue;
+
+                        if (ClickSelect.getValue()) {
+                            if (_clickSelectBlock != null) {
+                                if (state.getBlock() != _clickSelectBlock)
+                                    continue;
+                            }
+                        }
+
+                        if (Mode.getValue() == Modes.Creative) {
+                            mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
+                            _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+                            continue;
+                        }
+
+                        if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                            continue;
+
+
+                        if (selectedBlock == null) {
+                            selectedBlock = pos;
+                            continue;
+                        } else {
+                            double dist = pos.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+
+                            if (selectedBlock.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ) < dist)
+                                continue;
+
+                            if (dist <= Range.getValue())
+                                selectedBlock = pos;
+                        }
+                    }
+                break;
+                }
+            }
+            case Highway4: {
+                BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
+                if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
+
+                    for (BlockPos pos : BlockInteractionHelper.getHighway4()) {
+
+                        IBlockState state = mc.world.getBlockState(pos);
+
+                        if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                            continue;
+
+                        if (Mode.getValue() == Modes.Creative) {
+                            mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
+                            _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+                            continue;
+                        }
+
+                        if (ClickSelect.getValue()) {
+                            if (_clickSelectBlock != null) {
+                                if (state.getBlock() != _clickSelectBlock)
+                                    continue;
+                            }
+                        }
+
+                        if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                            continue;
+
+
+                        if (selectedBlock == null) {
+                            selectedBlock = pos;
+                            continue;
+                        } else {
+                            double dist = pos.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+
+                            if (selectedBlock.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ) < dist)
+                                continue;
+
+                            if (dist <= Range.getValue())
+                                selectedBlock = pos;
+
+                        }
+                    }
+                break;
+                }
+            }
+            case Highway2: {
+                BlockPos currentPos = PlayerUtil.GetLocalPlayerPosFloored();
+                if (_lastPlayerPos == null || !_lastPlayerPos.equals(currentPos)) {
+
+                    for (BlockPos pos : BlockInteractionHelper.getHighway2()) {
+
+                        IBlockState state = mc.world.getBlockState(pos);
+
+                        if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                            continue;
+
+                        if (Mode.getValue() == Modes.Creative) {
+                            mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
+                            _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+                            continue;
+                        }
+
+                        if (ClickSelect.getValue()) {
+                            if (_clickSelectBlock != null) {
+                                if (state.getBlock() != _clickSelectBlock)
+                                    continue;
+                            }
+                        }
+
+                        if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
+                            continue;
+
+
+                        if (selectedBlock == null) {
+                            selectedBlock = pos;
+                            continue;
+                        } else {
+                            double dist = pos.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+
+                            if (selectedBlock.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ) < dist)
+                                continue;
+
+                            if (dist <= Range.getValue())
+                                selectedBlock = pos;
+                        }
+                    }
+                break;
                 }
             }
         }

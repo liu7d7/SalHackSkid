@@ -15,7 +15,7 @@ public final class SafeWalkModule extends Module
     public SafeWalkModule()
     {
         super("SafeWalk", new String[]
-        { "SWalk" }, "Prevents you from walking off certain blocks", "NONE", 0x6B24DB, ModuleType.MOVEMENT);
+        { "SWalk" }, "Prevents you from walking off certain blocks", "NONE", 0x6B24DB, ModuleType.HIGHWAY);
     }
     
     @EventHandler
