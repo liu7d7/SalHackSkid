@@ -103,7 +103,7 @@ public final class AutoTotemModule extends Module
                         ClickType.PICKUP, mc.player);
                 mc.playerController.updateController();
                 
-                SalHack.SendMessage(ChatFormatting.YELLOW + "[AutoTotem] " + ChatFormatting.BLUE + "Offhand now has a " + l_Display);
+                SalHack.SendMessage(ChatFormatting.YELLOW + "[AutoTotem] " + ChatFormatting.LIGHT_PURPLE + "Offhand now has a " + l_Display);
             }
         }
     }

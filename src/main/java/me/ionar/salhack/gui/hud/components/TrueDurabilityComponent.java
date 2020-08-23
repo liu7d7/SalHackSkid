@@ -29,7 +29,7 @@ public class TrueDurabilityComponent extends HudComponentItem
 
         if (!l_Stack.isEmpty() && (l_Stack.getItem() instanceof ItemTool || l_Stack.getItem() instanceof ItemArmor || l_Stack.getItem() instanceof ItemSword))
         {
-            final String l_Durability = ChatFormatting.GRAY + "Durability: " + ChatFormatting.GREEN + (l_Stack.getMaxDamage()-l_Stack.getItemDamage());
+            final String l_Durability = ChatFormatting.WHITE + "Durability: " + ChatFormatting.GREEN + (l_Stack.getMaxDamage()-l_Stack.getItemDamage());
             
             RenderUtil.drawStringWithShadow(l_Durability, GetX(), GetY(), -1);
 
