@@ -86,14 +86,14 @@ public class FasterSpeedModule extends Module
                     mc.player.motionY = 0.405f;
 
                 final float yaw = GetRotationYawForCalc();
-                mc.player.motionX -= MathHelper.sin(yaw) * Multiplier.getValue();
-                mc.player.motionZ += MathHelper.cos(yaw) * Multiplier.getValue();
+                mc.player.motionX -= MathHelper.sin(yaw) * (Multiplier.getValue() + 0.005);
+                mc.player.motionZ += MathHelper.cos(yaw) * (Multiplier.getValue() + 0.005);
             }
             else if (mc.player.onGround && Mode.getValue() == Modes.OnGround)
             {
                 final float yaw = GetRotationYawForCalc();
-                mc.player.motionX -= MathHelper.sin(yaw) * Multiplier.getValue();
-                mc.player.motionZ += MathHelper.cos(yaw) * Multiplier.getValue();
+                mc.player.motionX -= MathHelper.sin(yaw) * (Multiplier.getValue() + 0.005);
+                mc.player.motionZ += MathHelper.cos(yaw) * (Multiplier.getValue() + 0.005);
                 mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY+0.4, mc.player.posZ, false));
                 /*
                 mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, true));

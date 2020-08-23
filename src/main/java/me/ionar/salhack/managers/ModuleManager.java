@@ -191,6 +191,9 @@ public class ModuleManager
         Add(new AutoTunnelModule());
         Add(new EnderChestFarmer());
         Add(new NoGlitchBlocksModule());
+
+        //Donate!
+        Add(new DonateModule());
         
         LoadExternalModules();
         

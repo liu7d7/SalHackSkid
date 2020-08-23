@@ -244,7 +244,7 @@ public class Module implements Listenable
 
     public enum ModuleType
     {
-        COMBAT, EXPLOIT, MOVEMENT, RENDER, WORLD, MISC, HIDDEN, UI, BOT, SCHEMATICA, HIGHWAY
+        COMBAT, EXPLOIT, MOVEMENT, RENDER, WORLD, MISC, HIDDEN, UI, BOT, SCHEMATICA, HIGHWAY, DONATE
     }
 
     public String getDisplayName()

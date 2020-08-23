@@ -28,7 +28,7 @@ public class AutoGapModule extends Module
 
     public AutoGapModule()
     {
-        super("AutoGap", new String[] {"Eat"}, "Automatically eats food, depending on hunger, or health", "NONE", 0xFFFB11, ModuleType.MISC);
+        super("AutoGap", new String[] {"Eat"}, "Automatically eats food, depending on hunger, or health", "NONE", 0xFFFB11, ModuleType.HIGHWAY);
     }
 
     private boolean m_WasEating = false;
