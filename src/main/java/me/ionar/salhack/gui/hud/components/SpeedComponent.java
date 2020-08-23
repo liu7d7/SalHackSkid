@@ -13,7 +13,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class SpeedComponent extends HudComponentItem
 {
-    final DecimalFormat Formatter = new DecimalFormat("#.#");
+    final DecimalFormat Formatter = new DecimalFormat("#.0");
     
     public SpeedComponent()
     {
@@ -41,14 +41,14 @@ public class SpeedComponent extends HudComponentItem
         
         float l_Distance = MathHelper.sqrt(deltaX * deltaX + deltaZ * deltaZ);
 
-        double l_KMH = Math.floor(( l_Distance/1000.0f ) / ( 0.05f/3600.0f ));
+        double l_BPS = l_Distance * 20;
         
-        String l_Formatter = Formatter.format(l_KMH);
+        String l_Formatter = Formatter.format(l_BPS);
+
+//        if (!l_Formatter.contains("."))
+//            l_Formatter += ".0";
         
-        if (!l_Formatter.contains("."))
-            l_Formatter += ".0";
-        
-        final String bps = ChatFormatting.GRAY + "Speed " + ChatFormatting.WHITE + l_Formatter + "km/h";
+        final String bps = ChatFormatting.GRAY + "Speed " + ChatFormatting.WHITE + l_Formatter + " BPS";
 
         SetWidth(RenderUtil.getStringWidth(bps));
         SetHeight(RenderUtil.getStringHeight(bps)+1);
