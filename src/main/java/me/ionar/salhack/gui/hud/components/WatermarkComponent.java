@@ -37,7 +37,7 @@ public class WatermarkComponent extends HudComponentItem
         }
         else
         {
-            RenderUtil.drawStringWithShadow(WatermarkString, GetX(), GetY(), 0x2ACCED);
+            RenderUtil.drawStringWithShadow(WatermarkString, GetX(), GetY(), 0x333cc4);
             
             SetWidth(RenderUtil.getStringWidth(WatermarkString));
             SetHeight(RenderUtil.getStringHeight(WatermarkString));

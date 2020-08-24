@@ -30,6 +30,6 @@ public class BiomeComponent extends HudComponentItem
         SetWidth(RenderUtil.getStringWidth(biome.getBiomeName()));
         SetHeight(RenderUtil.getStringHeight(biome.getBiomeName()));
 
-        RenderUtil.drawStringWithShadow(biome.getBiomeName(), GetX(), GetY(), -1);
+        RenderUtil.drawStringWithShadow(ChatFormatting.GRAY + "Biome: " + ChatFormatting.WHITE + biome.getBiomeName(), GetX(), GetY(), -1);
     }
 }

@@ -43,11 +43,13 @@ public class ModuleManager
     public void Init()
     {
         /// Combat
+        Add(new AnchorSurround());
         Add(new AimbotModule());
         Add(new AntiBots());
         Add(new AntiCityBossModule());
         Add(new Auto32kModule());
         Add(new AutoArmorModule());
+        Add(new BedAuraModule());
         Add(new AutoCityModule());
         Add(new AutoCrystalModule());
         Add(new AutoCrystalRewrite());

@@ -60,7 +60,7 @@ public final class OffhandModule extends Module
                         ClickType.PICKUP, mc.player);
                 mc.playerController.updateController();
                 
-                SendMessage(ChatFormatting.LIGHT_PURPLE + "Offhand now has a " + GetItemNameFromModeVal(Mode.getValue()));
+                SendMessage(ChatFormatting.BLUE + "Offhand now has a " + GetItemNameFromModeVal(Mode.getValue()));
             }
         }
     }
