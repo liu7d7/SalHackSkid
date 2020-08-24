@@ -68,8 +68,10 @@ public class SpeedComponent extends HudComponentItem
         {
             String l_FormatterKMH = FormatterKMH.format(l_KMH);
 
-            if (!l_FormatterKMH.contains("."))
+            // Speed value isnt a float so we dont need this.
+            /*if (!l_FormatterKMH.contains("."))
                 l_FormatterKMH += ".0";
+            */
 
             speed = ChatFormatting.GRAY + "Speed " + ChatFormatting.WHITE + l_FormatterKMH + "km/h";
 
