@@ -6,15 +6,26 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 import me.ionar.salhack.gui.hud.HudComponentItem;
 import me.ionar.salhack.main.SalHack;
+import me.ionar.salhack.module.Value;
 import me.ionar.salhack.util.Timer;
 import me.ionar.salhack.util.render.RenderUtil;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import scala.Unit;
 
 public class SpeedComponent extends HudComponentItem
 {
-    final DecimalFormat Formatter = new DecimalFormat("#.0");
-    
+    public final Value<UnitList> SpeedUnit = new Value<UnitList>("Speed Unit", new String[] {"SpeedUnit"}, "Unit of speed. Note that 1 metre = 1 block", UnitList.BPS);
+
+    public enum UnitList
+    {
+        BPS,
+        KMH,
+    }
+
+    final DecimalFormat FormatterBPS = new DecimalFormat("#.0");
+    final DecimalFormat FormatterKMH = new DecimalFormat("#.#");
+
     public SpeedComponent()
     {
         super("Speed", 2, 80);
@@ -23,7 +34,8 @@ public class SpeedComponent extends HudComponentItem
     private double PrevPosX;
     private double PrevPosZ;
     private Timer timer = new Timer();
-    
+    private  String speed = "";
+
 
     @Override
     public void render(int p_MouseX, int p_MouseY, float p_PartialTicks)
@@ -42,17 +54,31 @@ public class SpeedComponent extends HudComponentItem
         float l_Distance = MathHelper.sqrt(deltaX * deltaX + deltaZ * deltaZ);
 
         double l_BPS = l_Distance * 20;
-        
-        String l_Formatter = Formatter.format(l_BPS);
+        double l_KMH = Math.floor(( l_Distance/1000.0f ) / ( 0.05f/3600.0f ));
 
-//        if (!l_Formatter.contains("."))
-//            l_Formatter += ".0";
-        
-        final String bps = ChatFormatting.GRAY + "Speed " + ChatFormatting.WHITE + l_Formatter + " BPS";
+        if (SpeedUnit.getValue() == UnitList.BPS)
+        {
+            String l_FormatterBPS = FormatterBPS.format(l_BPS);
 
-        SetWidth(RenderUtil.getStringWidth(bps));
-        SetHeight(RenderUtil.getStringHeight(bps)+1);
+            //TODO Change BPS to m/s? 1 minecraft block is 1 real life metre iirc.
+            speed = ChatFormatting.GRAY + "Speed: " + ChatFormatting.WHITE + l_FormatterBPS + " BPS";
 
-        RenderUtil.drawStringWithShadow(bps, GetX(), GetY(), -1);
+        }
+        else if (SpeedUnit.getValue() == UnitList.KMH)
+        {
+            String l_FormatterKMH = FormatterKMH.format(l_KMH);
+
+            if (!l_FormatterKMH.contains("."))
+                l_FormatterKMH += ".0";
+
+            speed = ChatFormatting.GRAY + "Speed " + ChatFormatting.WHITE + l_FormatterKMH + "km/h";
+
+        }
+
+        SetWidth(RenderUtil.getStringWidth(speed));
+        SetHeight(RenderUtil.getStringHeight(speed)+1);
+
+        RenderUtil.drawStringWithShadow(speed, GetX(), GetY(), -1);
+
     }
 }

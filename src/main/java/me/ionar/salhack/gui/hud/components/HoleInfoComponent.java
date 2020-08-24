@@ -60,7 +60,7 @@ public class HoleInfoComponent extends HudComponentItem
                 l_Addon = ChatFormatting.YELLOW + "Unsafe";
         }
         
-        RenderUtil.drawStringWithShadow(String.format("Hole: %s", l_Addon), GetX(), GetY(), 0xFFFFFF);
+        RenderUtil.drawStringWithShadow(String.format(ChatFormatting.GRAY + "Hole: " + ChatFormatting.WHITE + "%s", l_Addon), GetX(), GetY(), 0xFFFFFF);
     }
 
 }
