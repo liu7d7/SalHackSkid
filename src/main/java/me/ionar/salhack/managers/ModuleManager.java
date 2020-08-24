@@ -48,6 +48,7 @@ public class ModuleManager
         Add(new AntiCityBossModule());
         Add(new Auto32kModule());
         Add(new AutoArmorModule());
+        Add(new BedAuraModule());
         Add(new AutoCityModule());
         Add(new AutoCrystalModule());
         Add(new AutoCrystalRewrite());
