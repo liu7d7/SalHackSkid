@@ -22,6 +22,7 @@ import me.ionar.salhack.main.Wrapper;
 import me.ionar.salhack.module.Value;
 import me.ionar.salhack.module.ValueListeners;
 import net.minecraft.client.gui.GuiScreen;
+import org.lwjgl.opengl.RenderTexture;
 
 public class HudManager
 {
@@ -58,6 +59,7 @@ public class HudManager
         Add(new StopwatchComponent());
         Add(new PvPInfoComponent());
         Add(new SchematicaMaterialInfoComponent());
+        Add(new PlayerRender());
 
         /// MUST be last in list
         Add(new SelectorMenuComponent());
