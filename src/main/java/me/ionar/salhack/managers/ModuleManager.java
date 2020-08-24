@@ -43,6 +43,7 @@ public class ModuleManager
     public void Init()
     {
         /// Combat
+        Add(new AnchorSurround());
         Add(new AimbotModule());
         Add(new AntiBots());
         Add(new AntiCityBossModule());

@@ -9,6 +9,8 @@ import me.ionar.salhack.module.combat.*;
 import me.ionar.salhack.module.movement.SpeedModule;
 import me.ionar.salhack.util.render.RenderUtil;
 
+import java.security.acl.AclNotFoundException;
+
 public class PvPInfoComponent extends HudComponentItem
 {
     public PvPInfoComponent()
@@ -21,6 +23,7 @@ public class PvPInfoComponent extends HudComponentItem
         _autoTrap = (AutoTrap)ModuleManager.Get().GetMod(AutoTrap.class);
         _surround = (SurroundModule)ModuleManager.Get().GetMod(SurroundModule.class);
         _autoCrystalRewrite = (AutoCrystalRewrite)ModuleManager.Get().GetMod(AutoCrystalRewrite.class);
+        _anchorSurround = (AnchorSurround)ModuleManager.Get().GetMod(AnchorSurround.class);
     }
     
     private KillAuraModule _killAura;
@@ -29,6 +32,7 @@ public class PvPInfoComponent extends HudComponentItem
     private AutoTrap _autoTrap;
     private SurroundModule _surround;
     private AutoCrystalRewrite _autoCrystalRewrite;
+    private AnchorSurround _anchorSurround;
 
     @Override
     public void render(int p_MouseX, int p_MouseY, float p_PartialTicks)
@@ -39,7 +43,7 @@ public class PvPInfoComponent extends HudComponentItem
         final String crystal = ChatFormatting.GRAY + "CRYSTAL A " + ChatFormatting.WHITE + ((_autoCrystal.isEnabled() || _autoCrystalRewrite.isEnabled()) ? ChatFormatting.GREEN + "ON" : ChatFormatting.RED + "OFF");
         final String bed = ChatFormatting.GRAY + "BED AURA " + ChatFormatting.WHITE + (_bedAura.isEnabled() ? ChatFormatting.GREEN + "ON" : ChatFormatting.RED + "OFF");
         final String autoTrap = ChatFormatting.GRAY + "AUTO TRAP " + ChatFormatting.WHITE + (_autoTrap.isEnabled() ? ChatFormatting.GREEN + "ON" : ChatFormatting.RED + "OFF");
-        final String speed = ChatFormatting.GRAY + "SURROUND " + ChatFormatting.WHITE + (_surround.isEnabled() ? ChatFormatting.GREEN + "ON" : ChatFormatting.RED + "OFF");
+        final String speed = ChatFormatting.GRAY + "SURROUND " + ChatFormatting.WHITE + (_surround.isEnabled() || _anchorSurround.isEnabled() ? ChatFormatting.GREEN + "ON" : ChatFormatting.RED + "OFF");
         
         RenderUtil.drawStringWithShadow(aura, GetX(), GetY(), -1);
         RenderUtil.drawStringWithShadow(crystal, GetX(), GetY()+12, -1);
