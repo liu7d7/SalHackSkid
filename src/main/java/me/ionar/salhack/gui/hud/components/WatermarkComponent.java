@@ -10,10 +10,10 @@ import me.ionar.salhack.util.render.RenderUtil;
 
 public class WatermarkComponent extends HudComponentItem
 {
-    public final Value<Boolean> Reliant = new Value<Boolean>("Reliant", new String[]
-    { "" }, "Shows reliant text instead of salhack", false);
+    public final Value<Boolean> Reliant = new Value<>("Reliant", new String[]
+            {""}, "Shows reliant text instead of salhack", false);
     
-    private static String WatermarkString = SalHackMod.NAME + ChatFormatting.WHITE + " " + SalHackMod.VERSION;
+    private static String WatermarkString = ChatFormatting.BLUE + SalHackMod.NAME + ChatFormatting.WHITE + " " + SalHackMod.VERSION;
 
     public WatermarkComponent()
     {
