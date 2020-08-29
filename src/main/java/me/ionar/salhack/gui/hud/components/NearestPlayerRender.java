@@ -25,8 +25,6 @@ public class NearestPlayerRender extends HudComponentItem
 {
     public final Value<Boolean> Players = new Value<>("Players", new String[]{"P"}, "Displays players", true);
     public final Value<Boolean> Friends = new Value<>("Friends", new String[]{"F"}, "Displays Friends", false);
-    public final Value<Boolean> Mobs = new Value<>("Mobs", new String[] {"M"}, "Displays Mobs", true);
-    public final Value<Boolean> Animals = new Value<>("Animals", new String[] {"A"}, "Displays Animals", true);
 
     public final Value<Integer> Scale = new Value<>("Scale", new String[] {""}, "Scale for rendering", 30, 10, 100, 5);
     public final Value<Integer> xPos = new Value<>("xPos", new String[] {""}, "xPos for rendering", 100, 10, 100, 5);
@@ -130,30 +128,15 @@ public class NearestPlayerRender extends HudComponentItem
 
     private boolean IsValidEntity(Entity p_Entity)
     {
-        if (!(p_Entity instanceof EntityLivingBase))
+        if (!(p_Entity instanceof EntityPlayer))
             return false;
 
-        if (p_Entity instanceof EntityPlayer)
-        {
-            if (p_Entity == mc.player)
-                return false;
-
-            if (!Players.getValue())
-                return false;
-
-            if (FriendManager.Get().IsFriend(p_Entity) && !Friends.getValue())
-                return false;
-        }
-
-        if (EntityUtil.isHostileMob(p_Entity) && !Mobs.getValue() || (p_Entity instanceof EntityPigZombie && !Mobs.getValue()
-                || (p_Entity instanceof EntityEnderman && !Mobs.getValue())
-                || (p_Entity instanceof EntityBat && !Mobs.getValue())))
+        if (p_Entity == mc.player)
             return false;
 
-        if (p_Entity instanceof EntityAnimal && !Animals.getValue())
+        if (!Players.getValue())
             return false;
 
         return true;
     }
 }
-

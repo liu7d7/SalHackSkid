@@ -140,6 +140,8 @@ public class ModuleManager
         Add(new NametagsModule());
         Add(new NoBobModule());
         Add(new NoRenderModule());
+        //Add(new MobOwnerModule());
+        //Add(new PortalESP());
         Add(new ShulkerPreviewModule());
         Add(new SkeletonModule());
         Add(new StorageESPModule());

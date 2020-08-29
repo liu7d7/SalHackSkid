@@ -63,6 +63,7 @@ public class HudManager
         Add(new PlayerRender());
         Add(new NearestPlayerRender());
         Add(new WelcomeComponent());
+        Add(new BedCountComponent());
 
         /// MUST be last in list
         Add(new SelectorMenuComponent());

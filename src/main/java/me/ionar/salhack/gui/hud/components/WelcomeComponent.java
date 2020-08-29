@@ -15,6 +15,7 @@ public class WelcomeComponent extends HudComponentItem
 
     String l_welcome = "";
     Calendar c = Calendar.getInstance();
+    // THIS IS A MINOR BUG!!! Time doesn't refresh (so it only checks on method call)
     int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
 
     @Override
