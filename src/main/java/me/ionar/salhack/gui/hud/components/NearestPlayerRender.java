@@ -1,22 +1,20 @@
 package me.ionar.salhack.gui.hud.components;
 
+import java.text.DecimalFormat;
 import java.util.Comparator;
+import java.util.Objects;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.ionar.salhack.gui.hud.HudComponentItem;
 import me.ionar.salhack.managers.FriendManager;
 import me.ionar.salhack.module.Value;
-import me.ionar.salhack.util.entity.EntityUtil;
+import me.ionar.salhack.util.MathUtil;
 import me.ionar.salhack.util.render.RenderUtil;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -36,6 +34,7 @@ public class NearestPlayerRender extends HudComponentItem
     }
 
     String PlayerType = "";
+    int responseTime = -1;
 
     @Override
     public void render(int p_MouseX, int p_MouseY, float p_PartialTicks)
@@ -52,6 +51,10 @@ public class NearestPlayerRender extends HudComponentItem
 
         if (l_Entity == null)
             return;
+
+        DecimalFormat df = new DecimalFormat("#.#");
+        String l_Health = (df.format(l_Entity.getHealth()+l_Entity.getAbsorptionAmount()));
+        ChatFormatting HealthColour = ChatFormatting.WHITE;
 
         if (FriendManager.Get().IsFriend(l_Entity))
         {
@@ -73,18 +76,6 @@ public class NearestPlayerRender extends HudComponentItem
         {
             PlayerType = ChatFormatting.RED + "Crystal PvPer";
         }
-        else if(l_Entity.getHeldItemMainhand().getItem() == Items.BED
-                && l_Entity.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == Items.DIAMOND_HELMET
-                || l_Entity.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == Items.CHAINMAIL_HELMET
-                && l_Entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.DIAMOND_CHESTPLATE
-                || l_Entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.CHAINMAIL_CHESTPLATE
-                && l_Entity.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == Items.DIAMOND_LEGGINGS
-                || l_Entity.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == Items.CHAINMAIL_LEGGINGS
-                && l_Entity.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() == Items.DIAMOND_BOOTS
-                || l_Entity.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() == Items.CHAINMAIL_BOOTS)
-        {
-            PlayerType = ChatFormatting.RED + "Bed PvPer";
-        }
         else if (l_Entity.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == Items.AIR
                 && l_Entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.AIR
                 && l_Entity.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == Items.AIR
@@ -92,16 +83,28 @@ public class NearestPlayerRender extends HudComponentItem
         {
             PlayerType = ChatFormatting.GREEN + "New Friend";
         }
-        /*else {
+        else {
             PlayerType = ChatFormatting.GOLD + "Unknown";
-        }*/
+        }
 
-        //String armour = Objects.toString(l_Entity.getArmorInventoryList());
+        if (l_Entity.getHealth() >= 17) {
+            HealthColour = ChatFormatting.GREEN ;
+        }
+        else if (l_Entity.getHealth() >= 10 && l_Entity.getHealth() < 17){
+          HealthColour = ChatFormatting.GOLD;
+        }
+        else if (l_Entity.getHealth() < 10){
+            HealthColour = ChatFormatting.RED;
+        }
 
-        //float l_HealthPct = ((l_Entity.getHealth()+l_Entity.getAbsorptionAmount())/l_Entity.getMaxHealth())*100.0f ;
-        //float l_HealthBarPct = Math.min(l_HealthPct, 100.0f);
-
-        //DecimalFormat l_Format = new DecimalFormat("#.#");
+        try
+        {
+            responseTime = (int) MathUtil.clamp(
+                    mc.getConnection().getPlayerInfo(l_Entity.getUniqueID()).getResponseTime(), 0,
+                    300);
+        }
+        catch (NullPointerException np)
+        {}
 
         GlStateManager.disableRescaleNormal();
         GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
@@ -116,14 +119,13 @@ public class NearestPlayerRender extends HudComponentItem
 
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
 
-        RenderUtil.drawStringWithShadow(l_Entity.getName(), GetX()+4, GetY()+4, 0xFFFFFF);
-        //RenderUtil.drawGradientRect(GetX(), GetY(), GetX()+l_HealthBarPct, GetY()+11, 0x999FF365, 0x9913FF00);
-        //RenderUtil.drawStringWithShadow(String.format("(%s) %s / %s", l_Format.format(l_HealthPct) + "%", l_Format.format(l_Entity.getHealth()+l_Entity.getAbsorptionAmount()), l_Format.format(l_Entity.getMaxHealth())), GetX()+20, GetY()+11, 0xFFFFFF);
-        RenderUtil.drawStringWithShadow("Threat: " + PlayerType, GetX()+4, GetY()+12, -1);
-        //RenderUtil.drawStringWithShadow("armour: " + armour, GetX()+4, GetY()+22, -1);
+        RenderUtil.drawStringWithShadow(l_Entity.getName() + " " + responseTime + "ms" + " " + df.format(mc.player.getDistance(l_Entity)) + "m", GetX()+4, GetY()+1, -1);
+        RenderUtil.drawStringWithShadow("Threat: " + PlayerType, GetX()+4, GetY()+11, -1);
+        RenderUtil.drawStringWithShadow("Health: " + (HealthColour + l_Health), GetX()+4, GetY()+21, -1);
+        //RenderUtil.drawStringWithShadow("Pops: " + TotemCountComponent.l_count, GetX()+4, GetY()+31, -1);
 
         this.SetWidth(120);
-        this.SetHeight(22);
+        this.SetHeight(33);
     }
 
     private boolean IsValidEntity(Entity p_Entity)
