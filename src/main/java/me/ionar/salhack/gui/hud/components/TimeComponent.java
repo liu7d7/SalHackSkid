@@ -3,6 +3,7 @@ package me.ionar.salhack.gui.hud.components;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import me.ionar.salhack.gui.hud.HudComponentItem;
 import me.ionar.salhack.util.render.RenderUtil;
 
@@ -22,7 +23,7 @@ public class TimeComponent extends HudComponentItem
 
         final String time = new SimpleDateFormat("h:mm a").format(new Date());
 
-        RenderUtil.drawStringWithShadow(time, GetX(), GetY(), -1);
+        RenderUtil.drawStringWithShadow(ChatFormatting.GRAY + "Time: " + ChatFormatting.WHITE + time, GetX(), GetY(), -1);
 
         SetWidth(RenderUtil.getStringWidth(time));
         SetHeight(RenderUtil.getStringHeight(time));

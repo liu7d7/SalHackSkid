@@ -30,6 +30,7 @@ import me.ionar.salhack.util.Timer;
 import me.ionar.salhack.util.entity.PlayerUtil;
 import me.ionar.salhack.util.render.RenderUtil;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockNetherrack;
 import net.minecraft.block.BlockObsidian;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
@@ -71,6 +72,8 @@ public class AutoBuilderModule extends Module
         Wall,
         HighwayWall,
         Stair,
+        HighwayThing,
+        NewFlat,
     }
     
     public enum BuildingModes
@@ -82,7 +85,7 @@ public class AutoBuilderModule extends Module
     public AutoBuilderModule()
     {
         super("AutoBuilder", new String[]
-        { "AutoSwastika" }, "Builds cool things at your facing block", "NONE", 0x96DB24, ModuleType.WORLD);
+        { "AutoSwastika" }, "Builds cool things at your facing block", "NONE", 0x96DB24, ModuleType.HIGHWAY);
     }
     
     private Vec3d Center = Vec3d.ZERO;
@@ -438,50 +441,38 @@ public class AutoBuilderModule extends Module
                     case East:
                         BlockArray.add(orignPos.down());
                         BlockArray.add(orignPos.down().east());
-                        BlockArray.add(orignPos.down().east().north());
                         BlockArray.add(orignPos.down().east().south());
-                        BlockArray.add(orignPos.down().east().north().north());
-                        BlockArray.add(orignPos.down().east().south().south());
-                        BlockArray.add(orignPos.down().east().north().north().north());
-                        BlockArray.add(orignPos.down().east().south().south().south());
-                        BlockArray.add(orignPos.down().east().north().north().north().up());
-                        BlockArray.add(orignPos.down().east().south().south().south().up());
+                        BlockArray.add(orignPos.down().east().south(2).up());
+                        BlockArray.add(orignPos.down().east().north());
+                        BlockArray.add(orignPos.down().east().north(2));
+                        BlockArray.add(orignPos.down().east().north(3).up());
                         break;
                     case North:
                         BlockArray.add(orignPos.down());
-                        BlockArray.add(orignPos.down().north());
-                        BlockArray.add(orignPos.down().north().east());
-                        BlockArray.add(orignPos.down().north().west());
-                        BlockArray.add(orignPos.down().north().east().east());
-                        BlockArray.add(orignPos.down().north().west().west());
-                        BlockArray.add(orignPos.down().north().east().east().east());
-                        BlockArray.add(orignPos.down().north().west().west().west());
-                        BlockArray.add(orignPos.down().north().east().east().east().up());
-                        BlockArray.add(orignPos.down().north().west().west().west().up());
+                        BlockArray.add(orignPos.down().south());
+                        BlockArray.add(orignPos.down().south().east());
+                        BlockArray.add(orignPos.down().south().east(2).up());
+                        BlockArray.add(orignPos.down().south().west());
+                        BlockArray.add(orignPos.down().south().west(2));
+                        BlockArray.add(orignPos.down().south().west(3).up());
                         break;
                     case South:
                         BlockArray.add(orignPos.down());
                         BlockArray.add(orignPos.down().south());
-                        BlockArray.add(orignPos.down().south().east());
                         BlockArray.add(orignPos.down().south().west());
-                        BlockArray.add(orignPos.down().south().east().east());
-                        BlockArray.add(orignPos.down().south().west().west());
-                        BlockArray.add(orignPos.down().south().east().east().east());
-                        BlockArray.add(orignPos.down().south().west().west().west());
-                        BlockArray.add(orignPos.down().south().east().east().east().up());
-                        BlockArray.add(orignPos.down().south().west().west().west().up());
+                        BlockArray.add(orignPos.down().south().west(2).up());
+                        BlockArray.add(orignPos.down().south().east());
+                        BlockArray.add(orignPos.down().south().east(2));
+                        BlockArray.add(orignPos.down().south().east(3).up());
                         break;
                     case West:
                         BlockArray.add(orignPos.down());
-                        BlockArray.add(orignPos.down().west());
-                        BlockArray.add(orignPos.down().west().north());
-                        BlockArray.add(orignPos.down().west().south());
-                        BlockArray.add(orignPos.down().west().north().north());
-                        BlockArray.add(orignPos.down().west().south().south());
-                        BlockArray.add(orignPos.down().west().north().north().north());
-                        BlockArray.add(orignPos.down().west().south().south().south());
-                        BlockArray.add(orignPos.down().west().north().north().north().up());
-                        BlockArray.add(orignPos.down().west().south().south().south().up());
+                        BlockArray.add(orignPos.down().east());
+                        BlockArray.add(orignPos.down().east().north());
+                        BlockArray.add(orignPos.down().east().north(2).up());
+                        BlockArray.add(orignPos.down().east().south());
+                        BlockArray.add(orignPos.down().east().south(2));
+                        BlockArray.add(orignPos.down().east().south(3).up());
                         break;
                     default:
                         break;
@@ -683,6 +674,48 @@ public class AutoBuilderModule extends Module
                     }
                 
                 break;
+            case HighwayThing:
+
+                switch (PlayerUtil.GetFacing())
+                {
+                    case East:
+                        interpPos = new BlockPos(pos.x, pos.y, pos.z).east().east();
+                        BlockArray.add(interpPos.down());
+                        BlockArray.add(interpPos.down().east());
+                        BlockArray.add(interpPos.down().east().east());
+                        BlockArray.add(interpPos.down().east().east().east());
+                        break;
+                    case North:
+                        interpPos = new BlockPos(pos.x, pos.y, pos.z).north().north();
+                        BlockArray.add(interpPos.down());
+                        BlockArray.add(interpPos.down().north());
+                        BlockArray.add(interpPos.down().north().north());
+                        BlockArray.add(interpPos.down().north().north().north());
+                        break;
+                    case South:
+                        interpPos = new BlockPos(pos.x, pos.y, pos.z).south().south();
+                        BlockArray.add(interpPos.down());
+                        BlockArray.add(interpPos.down().south());
+                        BlockArray.add(interpPos.down().south().south());
+                        BlockArray.add(interpPos.down().south().south().south());
+                        break;
+                    case West:
+                        interpPos = new BlockPos(pos.x, pos.y, pos.z).south().south();
+                        BlockArray.add(interpPos.down());
+                        BlockArray.add(interpPos.down().west());
+                        BlockArray.add(interpPos.down().west().west());
+                        BlockArray.add(interpPos.down().west().west().west());
+                        break;
+                    default:
+                        break;
+                }
+            case NewFlat:
+
+                for (int l_X = -3; l_X <= 3; ++l_X)
+                    for (int l_Y = -3; l_Y <= 3; ++l_Y)
+                    {
+                        BlockArray.add(orignPos.down().add(l_X, 0, 0));
+                    }
             case Cover:
                 if (p_Pair == null)
                     return;
@@ -860,9 +893,11 @@ public class AutoBuilderModule extends Module
             final ItemStack stack = Minecraft.getMinecraft().player.inventory.getStackInSlot(i);
             if (stack.getItem() instanceof ItemBlock)
             {
-                final ItemBlock block = (ItemBlock) stack.getItem();
-                
-                return new Pair<Integer, Block>(i, block.getBlock());
+                if (((ItemBlock) stack.getItem()).getBlock() != Blocks.NETHERRACK) {
+                    final ItemBlock block = (ItemBlock) stack.getItem();
+
+                    return new Pair<Integer, Block>(i, block.getBlock());
+                }
             }
         }
         return null;

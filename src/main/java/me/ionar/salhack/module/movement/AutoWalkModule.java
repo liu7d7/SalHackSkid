@@ -6,13 +6,14 @@ import me.ionar.salhack.module.Module;
 import me.ionar.salhack.module.world.AutoTunnelModule;
 import me.zero.alpine.fork.listener.EventHandler;
 import me.zero.alpine.fork.listener.Listener;
+import net.minecraft.network.play.client.CPacketEntityAction;
 
 public final class AutoWalkModule extends Module
 {
     public AutoWalkModule()
     {
         super("AutoWalk", new String[]
-        { "AW" }, "Automatically walks forward", "NONE", 0xC224DB, ModuleType.MOVEMENT);
+        { "AW" }, "Automatically walks forward", "NONE", 0xC224DB, ModuleType.HIGHWAY);
     }
     
     private AutoTunnelModule _autoTunnel;
@@ -26,8 +27,9 @@ public final class AutoWalkModule extends Module
     @EventHandler
     private Listener<EventPlayerUpdateMoveState> OnUpdateMoveState = new Listener<>(p_Event ->
     {
-        if (!NeedPause())
+        if (!NeedPause()) {
             mc.player.movementInput.moveForward++;
+        }
     });
     
     private boolean NeedPause()

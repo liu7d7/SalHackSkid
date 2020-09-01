@@ -98,7 +98,7 @@ public class NukerModule extends Module
         
         final BlockPos flooredPos = PlayerUtil.GetLocalPlayerPosFloored();
         
-        for (BlockPos pos : BlockInteractionHelper.getSphere(flooredPos, range, (int)range, false, true, 0))
+        for (BlockPos pos : BlockInteractionHelper.getCube())
         {
             if (Flatten.getValue() && pos.getY() < flooredPos.getY())
                 continue;

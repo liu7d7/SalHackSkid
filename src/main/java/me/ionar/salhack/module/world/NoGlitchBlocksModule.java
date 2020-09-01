@@ -1,16 +1,11 @@
 package me.ionar.salhack.module.world;
 
-import me.ionar.salhack.events.network.EventNetworkPacketEvent;
 import me.ionar.salhack.events.player.EventPlayerDestroyBlock;
-import me.ionar.salhack.events.render.EventRenderRainStrength;
 import me.ionar.salhack.events.world.EventWorldSetBlockState;
 import me.ionar.salhack.module.Module;
 import me.ionar.salhack.module.Value;
 import me.zero.alpine.fork.listener.EventHandler;
 import me.zero.alpine.fork.listener.Listener;
-import net.minecraft.network.play.server.SPacketBlockBreakAnim;
-import net.minecraft.network.play.server.SPacketBlockChange;
-import net.minecraft.network.play.server.SPacketMultiBlockChange;
 
 public class NoGlitchBlocksModule extends Module
 {
@@ -22,7 +17,7 @@ public class NoGlitchBlocksModule extends Module
     public NoGlitchBlocksModule()
     {
         super("NoGlitchBlocks", new String[]
-                { "AntiGhostBlocks" }, "Synchronizes client and server communication by canceling clientside destroy/place for blocks", "NONE", -1, ModuleType.WORLD);
+                { "AntiGhostBlocks" }, "Synchronizes client and server communication by canceling clientside destroy/place for blocks", "NONE", -1, ModuleType.HIGHWAY);
     }
 
     /*@EventHandler

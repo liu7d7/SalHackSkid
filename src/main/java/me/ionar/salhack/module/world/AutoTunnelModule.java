@@ -11,17 +11,19 @@ import static org.lwjgl.opengl.GL11.glLineWidth;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import ibxm.Player;
 import me.ionar.salhack.events.MinecraftEvent.Era;
+import me.ionar.salhack.util.entity.PlayerUtil;
 import me.ionar.salhack.events.player.EventPlayerMotionUpdate;
 import me.ionar.salhack.events.render.RenderEvent;
 import me.ionar.salhack.managers.BlockManager;
 import me.ionar.salhack.module.Module;
 import me.ionar.salhack.module.Value;
 import me.ionar.salhack.util.BlockInteractionHelper;
-import me.ionar.salhack.util.entity.PlayerUtil;
 import me.ionar.salhack.util.render.RenderUtil;
 import me.zero.alpine.fork.listener.EventHandler;
 import me.zero.alpine.fork.listener.Listener;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDynamicLiquid;
 import net.minecraft.block.BlockStaticLiquid;
 import net.minecraft.block.state.IBlockState;
@@ -35,6 +37,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.event.world.BlockEvent;
 
 public class AutoTunnelModule extends Module
 {
@@ -47,8 +50,10 @@ public class AutoTunnelModule extends Module
     {
         Tunnel1x2,
         Tunnel2x2,
+        Tunnel1x3,
         Tunnel2x3,
         Tunnel3x3,
+        Tunnel4wGuards,
     }
     
     public enum MiningModes
@@ -59,7 +64,7 @@ public class AutoTunnelModule extends Module
     
     public AutoTunnelModule()
     {
-        super("AutoTunnel", new String[] {""}, "Automatically mines different kind of 2d tunnels, in the direction you're facing", "NONE", -1, ModuleType.WORLD);
+        super("AutoTunnel", new String[] {""}, "Automatically mines different kind of 2d tunnels, in the direction you're facing", "NONE", -1, ModuleType.HIGHWAY);
     }
     
     private List<BlockPos> _blocksToDestroy = new CopyOnWriteArrayList<>();
@@ -101,6 +106,15 @@ public class AutoTunnelModule extends Module
                             playerPos = new BlockPos(playerPos).east();
                         }
                         break;
+                    case Tunnel1x3:
+                        for (int i = 0; i < 2; ++i)
+                        {
+                            _blocksToDestroy.add(playerPos.east());
+                            _blocksToDestroy.add(playerPos.east().up());
+                            _blocksToDestroy.add(playerPos.east().up().up());
+
+                            playerPos = new BlockPos(playerPos).east();
+                        }
                     case Tunnel2x3:
                         for (int i = 0; i < 3; ++i)
                         {
@@ -127,6 +141,33 @@ public class AutoTunnelModule extends Module
                             _blocksToDestroy.add(playerPos.east().north().north().up());
                             _blocksToDestroy.add(playerPos.east().north().north().up().up());
                             
+                            playerPos = new BlockPos(playerPos).east();
+                        }
+                        break;
+                    case Tunnel4wGuards:
+                        for (int i = 0; i < 4; ++i) {
+                            _blocksToDestroy.add(playerPos.east());
+                            _blocksToDestroy.add(playerPos.east().up());
+                            _blocksToDestroy.add(playerPos.east().up(2));
+                            _blocksToDestroy.add(playerPos.east().up(3));
+                            _blocksToDestroy.add(playerPos.east().south());
+                            _blocksToDestroy.add(playerPos.east().south().up());
+                            _blocksToDestroy.add(playerPos.east().south().up(2));
+                            _blocksToDestroy.add(playerPos.east().south().up(3));
+                            _blocksToDestroy.add(playerPos.east().south(2).up());
+                            _blocksToDestroy.add(playerPos.east().south(2).up(2));
+                            _blocksToDestroy.add(playerPos.east().south(2).up(3));
+                            _blocksToDestroy.add(playerPos.east().north());
+                            _blocksToDestroy.add(playerPos.east().north().up());
+                            _blocksToDestroy.add(playerPos.east().north().up(2));
+                            _blocksToDestroy.add(playerPos.east().north().up(3));
+                            _blocksToDestroy.add(playerPos.east().north(2));
+                            _blocksToDestroy.add(playerPos.east().north(2).up());
+                            _blocksToDestroy.add(playerPos.east().north(2).up(2));
+                            _blocksToDestroy.add(playerPos.east().north(2).up(3));
+                            _blocksToDestroy.add(playerPos.east().north(3).up());
+                            _blocksToDestroy.add(playerPos.east().north(3).up(2));
+                            _blocksToDestroy.add(playerPos.east().north(3).up(3));
                             playerPos = new BlockPos(playerPos).east();
                         }
                         break;
@@ -157,6 +198,15 @@ public class AutoTunnelModule extends Module
                             playerPos = new BlockPos(playerPos).north();
                         }
                         break;
+                    case Tunnel1x3:
+                        for (int i = 0; i < 2; ++i)
+                        {
+                            _blocksToDestroy.add(playerPos.north());
+                            _blocksToDestroy.add(playerPos.north().up());
+                            _blocksToDestroy.add(playerPos.north().up().up());
+
+                            playerPos = new BlockPos(playerPos).north();
+                        }
                     case Tunnel2x3:
                         for (int i = 0; i < 3; ++i)
                         {
@@ -183,6 +233,33 @@ public class AutoTunnelModule extends Module
                             _blocksToDestroy.add(playerPos.north().east().east().up());
                             _blocksToDestroy.add(playerPos.north().east().east().up().up());
                             
+                            playerPos = new BlockPos(playerPos).north();
+                        }
+                        break;
+                    case Tunnel4wGuards:
+                        for (int i = 0; i < 4; ++i) {
+                            _blocksToDestroy.add(playerPos.north());
+                            _blocksToDestroy.add(playerPos.north().up());
+                            _blocksToDestroy.add(playerPos.north().up(2));
+                            _blocksToDestroy.add(playerPos.north().up(3));
+                            _blocksToDestroy.add(playerPos.north().east());
+                            _blocksToDestroy.add(playerPos.north().east().up());
+                            _blocksToDestroy.add(playerPos.north().east().up(2));
+                            _blocksToDestroy.add(playerPos.north().east().up(3));
+                            _blocksToDestroy.add(playerPos.north().east(2).up());
+                            _blocksToDestroy.add(playerPos.north().east(2).up(2));
+                            _blocksToDestroy.add(playerPos.north().east(2).up(3));
+                            _blocksToDestroy.add(playerPos.north().west());
+                            _blocksToDestroy.add(playerPos.north().west().up());
+                            _blocksToDestroy.add(playerPos.north().west().up(2));
+                            _blocksToDestroy.add(playerPos.north().west().up(3));
+                            _blocksToDestroy.add(playerPos.north().west(2));
+                            _blocksToDestroy.add(playerPos.north().west(2).up());
+                            _blocksToDestroy.add(playerPos.north().west(2).up(2));
+                            _blocksToDestroy.add(playerPos.north().west(2).up(3));
+                            _blocksToDestroy.add(playerPos.north().west(3).up());
+                            _blocksToDestroy.add(playerPos.north().west(3).up(2));
+                            _blocksToDestroy.add(playerPos.north().west(3).up(3));
                             playerPos = new BlockPos(playerPos).north();
                         }
                         break;
@@ -213,6 +290,15 @@ public class AutoTunnelModule extends Module
                             playerPos = new BlockPos(playerPos).south();
                         }
                         break;
+                    case Tunnel1x3:
+                        for (int i = 0; i < 2; ++i)
+                        {
+                            _blocksToDestroy.add(playerPos.south());
+                            _blocksToDestroy.add(playerPos.south().up());
+                            _blocksToDestroy.add(playerPos.south().up().up());
+
+                            playerPos = new BlockPos(playerPos).south();
+                        }
                     case Tunnel2x3:
                         for (int i = 0; i < 3; ++i)
                         {
@@ -242,6 +328,33 @@ public class AutoTunnelModule extends Module
                             playerPos = new BlockPos(playerPos).south();
                         }
                         break;
+                    case Tunnel4wGuards:
+                        for (int i = 0; i < 4; ++i) {
+                            _blocksToDestroy.add(playerPos.south());
+                            _blocksToDestroy.add(playerPos.south().up());
+                            _blocksToDestroy.add(playerPos.south().up(2));
+                            _blocksToDestroy.add(playerPos.south().up(3));
+                            _blocksToDestroy.add(playerPos.south().west());
+                            _blocksToDestroy.add(playerPos.south().west().up());
+                            _blocksToDestroy.add(playerPos.south().west().up(2));
+                            _blocksToDestroy.add(playerPos.south().west().up(3));
+                            _blocksToDestroy.add(playerPos.south().west(2).up());
+                            _blocksToDestroy.add(playerPos.south().west(2).up(2));
+                            _blocksToDestroy.add(playerPos.south().west(2).up(3));
+                            _blocksToDestroy.add(playerPos.south().east());
+                            _blocksToDestroy.add(playerPos.south().east().up());
+                            _blocksToDestroy.add(playerPos.south().east().up(2));
+                            _blocksToDestroy.add(playerPos.south().east().up(3));
+                            _blocksToDestroy.add(playerPos.south().east(2));
+                            _blocksToDestroy.add(playerPos.south().east(2).up());
+                            _blocksToDestroy.add(playerPos.south().east(2).up(2));
+                            _blocksToDestroy.add(playerPos.south().east(2).up(3));
+                            _blocksToDestroy.add(playerPos.south().east(3).up());
+                            _blocksToDestroy.add(playerPos.south().east(3).up(2));
+                            _blocksToDestroy.add(playerPos.south().east(3).up(3));
+                            playerPos = new BlockPos(playerPos).south();
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -266,6 +379,15 @@ public class AutoTunnelModule extends Module
                             _blocksToDestroy.add(playerPos.west().south());
                             _blocksToDestroy.add(playerPos.west().south().up());
                             
+                            playerPos = new BlockPos(playerPos).west();
+                        }
+                    case Tunnel1x3:
+                        for (int i = 0; i < 2; ++i)
+                        {
+                            _blocksToDestroy.add(playerPos.west());
+                            _blocksToDestroy.add(playerPos.west().up());
+                            _blocksToDestroy.add(playerPos.west().up().up());
+
                             playerPos = new BlockPos(playerPos).west();
                         }
                         break;
@@ -298,6 +420,33 @@ public class AutoTunnelModule extends Module
                             playerPos = new BlockPos(playerPos).west();
                         }
                         break;
+                    case Tunnel4wGuards:
+                        for (int i = 0; i < 4; ++i) {
+                            _blocksToDestroy.add(playerPos.west());
+                            _blocksToDestroy.add(playerPos.west().up());
+                            _blocksToDestroy.add(playerPos.west().up(2));
+                            _blocksToDestroy.add(playerPos.west().up(3));
+                            _blocksToDestroy.add(playerPos.west().north());
+                            _blocksToDestroy.add(playerPos.west().north().up());
+                            _blocksToDestroy.add(playerPos.west().north().up(2));
+                            _blocksToDestroy.add(playerPos.west().north().up(3));
+                            _blocksToDestroy.add(playerPos.west().north(2).up());
+                            _blocksToDestroy.add(playerPos.west().north(2).up(2));
+                            _blocksToDestroy.add(playerPos.west().north(2).up(3));
+                            _blocksToDestroy.add(playerPos.west().south());
+                            _blocksToDestroy.add(playerPos.west().south().up());
+                            _blocksToDestroy.add(playerPos.west().south().up(2));
+                            _blocksToDestroy.add(playerPos.west().south().up(3));
+                            _blocksToDestroy.add(playerPos.west().south(2));
+                            _blocksToDestroy.add(playerPos.west().south(2).up());
+                            _blocksToDestroy.add(playerPos.west().south(2).up(2));
+                            _blocksToDestroy.add(playerPos.west().south(2).up(3));
+                            _blocksToDestroy.add(playerPos.west().south(3).up());
+                            _blocksToDestroy.add(playerPos.west().south(3).up(2));
+                            _blocksToDestroy.add(playerPos.west().south(3).up(3));
+                            playerPos = new BlockPos(playerPos).west();
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -312,7 +461,7 @@ public class AutoTunnelModule extends Module
         {
             IBlockState state = mc.world.getBlockState(pos);
             
-            if (state.getBlock() == Blocks.AIR || state.getBlock() instanceof BlockDynamicLiquid || state.getBlock() instanceof BlockStaticLiquid || state.getBlock() == Blocks.BEDROCK)
+            if (state.getBlock() == Blocks.AIR || state.getBlock() instanceof BlockDynamicLiquid || state.getBlock() instanceof BlockStaticLiquid || state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.NETHERRACK)
                 continue;
             
             toDestroy = pos;
@@ -336,11 +485,14 @@ public class AutoTunnelModule extends Module
                     BlockManager.Update(5.0f, true);
                     break;
                 case Packet:
-                    mc.player.swingArm(EnumHand.MAIN_HAND);
-                    mc.player.connection.sendPacket(new CPacketPlayerDigging(
-                            CPacketPlayerDigging.Action.START_DESTROY_BLOCK, toDestroy, EnumFacing.UP));
-                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK,
-                            toDestroy, EnumFacing.UP));
+                    IBlockState l2_State = mc.world.getBlockState(PlayerUtil.GetLocalPlayerPosFloored().up().west().west().west());
+                    if (l2_State != Blocks.NETHERRACK) {
+                        mc.player.swingArm(EnumHand.MAIN_HAND);
+                        mc.player.connection.sendPacket(new CPacketPlayerDigging(
+                                CPacketPlayerDigging.Action.START_DESTROY_BLOCK, toDestroy, EnumFacing.UP));
+                        mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK,
+                                toDestroy, EnumFacing.UP));
+                    }
                     break;
                 default:
                     break;

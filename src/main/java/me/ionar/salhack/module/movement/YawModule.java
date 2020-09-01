@@ -26,7 +26,7 @@ public final class YawModule extends Module
     public YawModule()
     {
         super("Yaw", new String[]
-        { "RotLock", "Rotation" }, "Locks you rotation for precision", "NONE", 0xDA24DB, ModuleType.MOVEMENT);
+        { "RotLock", "Rotation" }, "Locks you rotation for precision", "NONE", 0xDA24DB, ModuleType.HIGHWAY);
     }
     
     @Override

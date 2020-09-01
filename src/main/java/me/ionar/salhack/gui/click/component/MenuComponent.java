@@ -11,7 +11,6 @@ import me.ionar.salhack.managers.ImageManager;
 import me.ionar.salhack.module.ui.ClickGuiModule;
 import me.ionar.salhack.module.ui.ColorsModule;
 import me.ionar.salhack.util.imgs.SalDynamicTexture;
-import me.ionar.salhack.util.render.AbstractGui;
 import me.ionar.salhack.util.render.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -132,10 +131,15 @@ public class MenuComponent
             }
         }
         
-        RenderUtil.drawGradientRect(GetX(), GetY()+17-p_OffsetY, GetX()+GetWidth(), GetY()+GetHeight(), 0x992A2A2A, 0x992A2A2A);
+        //RenderUtil.drawOutlineRect(GetX()+10, GetY()+17-p_OffsetY+10, GetX()+GetWidth()-10, GetY()+GetHeight()-10, 10, 0x99333cc4);
+        //RenderUtil.drawRect(GetX(), GetY()+17-p_OffsetY, GetX()+GetWidth(), GetY()+GetHeight(), 0x99333cc4);
 
-        RenderUtil.drawRect(GetX(), GetY()-p_OffsetY, GetX() + GetWidth(), GetY() + 17-p_OffsetY, 0x99000000); /// top
-        FontManager.Get().TwCenMtStd28.drawStringWithShadow(GetDisplayName(), GetX() + 2, GetY() + 1-p_OffsetY, GetTextColor());
+        RenderUtil.drawRect(GetX(), GetY() + 13 - p_OffsetY, GetX() + 1, GetY() + GetHeight(), GetBorderColor()); //vertical left
+        RenderUtil.drawRect(GetX() + GetWidth() - 1, GetY() + 13 - p_OffsetY, GetX() + GetWidth(), GetY() + GetHeight(), GetBorderColor()); //vertical right
+        RenderUtil.drawRect(GetX(), GetY() + 13 - p_OffsetY, GetX() + GetWidth(), GetY() + 14 - p_OffsetY, GetBorderColor()); //horizontal top
+        RenderUtil.drawRect(GetX(), GetY() + GetHeight() - 1, GetX() + GetWidth(), GetY() + GetHeight(), GetBorderColor()); //horizontal bottom
+        RenderUtil.drawGradientRect(GetX(), GetY() - p_OffsetY, GetX() + GetWidth(), GetY() + 13 - p_OffsetY, GetBorderColor(), GetBorderColor()); /// top
+        FontManager.Get().TwCenMtStd28.drawStringWithShadow(GetDisplayName(), GetX() + 2, GetY() + 1 - p_OffsetY, GetTextColor());
 
         
         if (BarTexture != null)
@@ -445,6 +449,12 @@ public class MenuComponent
     {
     	return (Colors.Red.getValue() << 16) & 0x00FF0000 | (Colors.Green.getValue() << 8) & 0x0000FF00 | Colors.Blue.getValue() & 0x000000FF;
     }
+
+    public int GetBorderColor()
+    {
+        return (Colors.BorderAlpha.getValue() << 24) & 0xFF000000 | (Colors.BorderRed.getValue() << 16) & 0x00FF0000 | (Colors.BorderGreen.getValue() << 8) & 0x0000FF00 | (Colors.BorderBlue.getValue()) & 0x000000FF;
+    }
+
 
     public void Default()
     {

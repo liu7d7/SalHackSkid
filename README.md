@@ -1,19 +1,12 @@
-[![Sal Hack logo](/src/main/resources/assets/salhack/imgs/SalHackWatermark.png)](https://github.com/ionar2/salhack/)
-
-[![Discord](https://img.shields.io/discord/694337597371056198?label=discord&logo=discord&logoColor=white)](https://discord.gg/UEyGRGu) 
-[![Gradle Build](https://github.com/ionar2/salhack/workflows/Gradle%20Build/badge.svg?branch=master)](https://github.com/ionar2/salhack/actions)
-[![GitHub All Releases](https://img.shields.io/github/downloads/ionar2/salhack/total.svg)](https://github.com/ionar2/salhack/releases/)
-[![GitHub contributors](https://img.shields.io/github/contributors/ionar2/salhack.svg)](https://github.com/ionar2/salhack/graphs/contributors/)
-[![Contributions](https://img.shields.io/badge/contributions-unmaintained-lightgray.svg?style=flat)](https://github.com/ionar2/salhack/issues/)
+Ethius is the group that made the modifications to salhack and created this thing.
 
 ## Salhack
-Salhack is a Forge mod made by ionar. Recently, ionar has made the decision to leave the project, and as such, this project is discontinued without a main developer. 
+Salhack is a Forge mod made by ionar. Recently, ionar has made the decision to leave the project, and as such, this project is discontinued without a main developer. And therefore someone that wanted to buid the higway system on endcrystal.me decided to make this thing.
 
-This project is **not maintained**. 
+CleanMiner is maintained.
  
 ## Installation
-
-Salhack is a forge mod for `1.12.2`. We provide already pre build jar files on our [release page](https://github.com/ionar2/salhack/releases). If you want to have changes before they get officially released check our [CI](https://github.com/ionar2/salhack/actions) out. (It builds a new jar file on every change we make.) To use salhack just drop the jar file in your mods folder and start forge. Have fun!
+SalHackSkid is a forge mod for `1.12.2` that was based off Salhack. We provide already pre build jar files on our [release page](https://github.com/ionar2/salhack/releases). If you want to have changes before they get officially released check our [CI](https://github.com/ionar2/salhack/actions) out. (It builds a new jar file on every change we make.) To use salhack just drop the jar file in your mods folder and start forge. Have fun!
 
 **Tip:** You can open the GUI containing all "tweaks" with your left arrow at default (You can change that later.)
 

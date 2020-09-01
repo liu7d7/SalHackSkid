@@ -43,11 +43,13 @@ public class ModuleManager
     public void Init()
     {
         /// Combat
+        Add(new AnchorSurround());
         Add(new AimbotModule());
         Add(new AntiBots());
         Add(new AntiCityBossModule());
         Add(new Auto32kModule());
         Add(new AutoArmorModule());
+        Add(new BedAuraModule());
         Add(new AutoCityModule());
         Add(new AutoCrystalModule());
         Add(new AutoCrystalRewrite());
@@ -59,17 +61,14 @@ public class ModuleManager
         Add(new HoleFillerModule());
         Add(new KillAuraModule());
         Add(new OffhandModule());
-        Add(new ReachModule());
         Add(new SelfTrapModule());
         Add(new SurroundModule());
         Add(new VelocityModule());
         
         /// Exploit
-        Add(new AntiHungerModule());
         Add(new CoordTPExploitModule());
         Add(new CrashExploitModule());
         Add(new EntityDesyncModule());
-        Add(new LiquidInteractModule());
         Add(new MountBypassModule());
         Add(new NoMiningTrace());
         Add(new NewChunksModule());
@@ -84,6 +83,7 @@ public class ModuleManager
         Add(new AutoEatModule());
         Add(new AutoDyeModule());
         Add(new AutoFarmlandModule());
+        Add(new AutoGapModule());
         Add(new AutoMendArmorModule());
         Add(new AutoMountModule());
         Add(new AutoReconnectModule());
@@ -92,6 +92,7 @@ public class ModuleManager
         Add(new AutoSignModule());
         Add(new AutoTameModule());
         Add(new AutoTendModule());
+        Add(new BlueTReplacerModule());
         Add(new BuildHeightModule());
         Add(new ChatModificationsModule());
         Add(new ChatNotifierModule());
@@ -101,7 +102,6 @@ public class ModuleManager
         Add(new FakePlayer());
         Add(new FriendsModule());
         Add(new GlobalLocationModule());
-        Add(new HotbarCacheModule());
         Add(new MiddleClickFriendsModule());
         Add(new RetardChatModule());
         Add(new StopWatchModule());
@@ -111,7 +111,6 @@ public class ModuleManager
         
         /// Movement
         Add(new AntiLevitationModule());
-        Add(new AutoWalkModule());
         Add(new BlinkModule());
         Add(new ElytraFlyModule());
         Add(new EntityControlModule());
@@ -120,12 +119,10 @@ public class ModuleManager
         Add(new NoRotateModule());
         Add(new NoSlowModule());
         Add(new JesusModule());
-        Add(new SafeWalkModule());
         Add(new SneakModule());
         Add(new SpeedModule());
         Add(new SprintModule());
         Add(new StepModule());
-        Add(new YawModule());
         
         /// Render
         Add(new AntiFog());
@@ -143,6 +140,8 @@ public class ModuleManager
         Add(new NametagsModule());
         Add(new NoBobModule());
         Add(new NoRenderModule());
+        //Add(new MobOwnerModule());
+        //Add(new PortalESP());
         Add(new ShulkerPreviewModule());
         Add(new SkeletonModule());
         Add(new StorageESPModule());
@@ -162,19 +161,12 @@ public class ModuleManager
         Add(new ReliantChatModule());
         
         /// World
-        Add(new AutoBuilderModule());
         Add(new AutoNameTagModule());
-        Add(new AutoToolModule());
-        Add(new AutoTunnelModule());
         Add(new AutoWitherModule());
-        Add(new EnderChestFarmer());
         Add(new FastPlaceModule());
         Add(new LawnmowerModule());
-        Add(new NoGlitchBlocksModule());
         Add(new NoWeatherModule());
         Add(new NukerModule());
-        Add(new ScaffoldModule());
-        Add(new SpeedyGonzales());
         Add(new StashFinderModule());
         Add(new StashLoggerModule());
         Add(new TimerModule());
@@ -183,6 +175,29 @@ public class ModuleManager
         /// Schematica
         Add(new PrinterModule());
         Add(new PrinterBypassModule());
+
+        // Highway
+        Add(new NukerBypassModule());
+        Add(new ScaffoldModule());
+        Add(new SpeedyGonzales());
+        Add(new YawModule());
+        Add(new HotbarCacheModule());
+        Add(new HotbarCacheRewriteModule());
+        Add(new ReachModule());
+        Add(new AntiHungerModule());
+        Add(new LiquidInteractModule());
+        Add(new AutoWalkModule());
+        Add(new BetterYawModule());
+        Add(new FasterSpeedModule());
+        Add(new SafeWalkModule());
+        Add(new AutoBuilderModule());
+        Add(new AutoToolModule());
+        Add(new AutoTunnelModule());
+        Add(new EnderChestFarmer());
+        Add(new NoGlitchBlocksModule());
+
+        //Donate!
+        Add(new DonateModule());
         
         LoadExternalModules();
         

@@ -32,7 +32,7 @@ public class EnderChestFarmer extends Module
 
     public EnderChestFarmer()
     {
-        super("EnderChestFarmer", new String[]{ "EChestFarmer" }, "Autoamatically places enderchests around you, and attempts to mine it", "NONE", -1, ModuleType.WORLD);
+        super("EnderChestFarmer", new String[]{ "EChestFarmer" }, "Autoamatically places enderchests around you, and attempts to mine it", "NONE", -1, ModuleType.HIGHWAY);
     }
     
     private Timer PlaceTimer = new Timer();
@@ -61,7 +61,7 @@ public class EnderChestFarmer extends Module
                     if (stack.isEmpty())
                         continue;
                     
-                    if (stack.getItem() == Items.DIAMOND_PICKAXE)
+                    if (stack.getItem() == Items.DIAMOND_PICKAXE || stack.getItem() == Items.STONE_PICKAXE)
                     {
                         hasPickaxe = true;
                         mc.player.inventory.currentItem = i;

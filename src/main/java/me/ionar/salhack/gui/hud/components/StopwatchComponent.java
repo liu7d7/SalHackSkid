@@ -32,7 +32,7 @@ public class StopwatchComponent extends HudComponentItem
     {
         super.render(p_MouseX, p_MouseY, p_PartialTicks);
 
-        final String l_Seconds = ChatFormatting.GRAY + "Seconds " + ChatFormatting.WHITE + TimeUnit.MILLISECONDS.toSeconds(Stopwatch.ElapsedMS - Stopwatch.StartMS);
+        final String l_Seconds = ChatFormatting.GRAY + "Seconds: " + ChatFormatting.WHITE + TimeUnit.MILLISECONDS.toSeconds(Stopwatch.ElapsedMS - Stopwatch.StartMS);
         
         RenderUtil.drawStringWithShadow(l_Seconds, GetX(), GetY(), -1);
 
