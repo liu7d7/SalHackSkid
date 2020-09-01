@@ -452,7 +452,7 @@ public class MenuComponent
 
     public int GetBorderColor()
     {
-        return (Colors.BorderAlpha.getValue() << 24) & 0xFF000000 | (Colors.BorderRed.getValue() << 16) & 0x00FF0000 | (Colors.BorderGreen.getValue() << 8) & 0x0000FF00 | (Colors.BorderBlue.getValue() & 0x000000FF;
+        return (Colors.BorderAlpha.getValue() << 24) & 0xFF000000 | (Colors.BorderRed.getValue() << 16) & 0x00FF0000 | (Colors.BorderGreen.getValue() << 8) & 0x0000FF00 | (Colors.BorderBlue.getValue()) & 0x000000FF;
     }
 
 
