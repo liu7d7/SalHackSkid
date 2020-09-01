@@ -16,6 +16,11 @@ public final class ColorsModule extends Module
     public final Value<Float> ImageGreen = new Value<Float>("ImageGreen", new String[] {"iGreen"}, "Green for rendering the icons", 1f, 0f, 1f, 0.1f);
     public final Value<Float> ImageBlue = new Value<Float>("ImageBlue", new String[] {"iBlue"}, "Blue for rendering the icons", 1f, 0f, 1f, 0.1f);
     public final Value<Float> ImageAlpha = new Value<Float>("ImageAlpha", new String[] {"iAlpha"}, "Alpha for rendering the icons", 1f, 0f, 1f, 0.1f);
+
+    public final Value<Integer> BorderRed = new Value<Integer>("ImageRed", new String[] {"iRed"}, "Red for rendering the icons", 1f, 0f, 1f, 0.1f);
+    public final Value<Integer> BorderGreen = new Value<Integer>("ImageGreen", new String[] {"iGreen"}, "Green for rendering the icons", 1f, 0f, 1f, 0.1f);
+    public final Value<Integer> BorderBlue = new Value<Integer>("ImageBlue", new String[] {"iBlue"}, "Blue for rendering the icons", 1f, 0f, 1f, 0.1f);
+    public final Value<Integer> BorderAlpha = new Value<Integer>("ImageAlpha", new String[] {"iAlpha"}, "Alpha for rendering the icons", 1f, 0f, 1f, 0.1f);
     
     public ColorsModule()
     {

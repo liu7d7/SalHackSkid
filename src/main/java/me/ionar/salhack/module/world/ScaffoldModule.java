@@ -4,8 +4,10 @@ import me.ionar.salhack.events.MinecraftEvent.Era;
 import me.ionar.salhack.events.network.EventNetworkPacketEvent;
 import me.ionar.salhack.events.player.EventPlayerMotionUpdate;
 import me.ionar.salhack.events.player.EventPlayerMove;
+import me.ionar.salhack.managers.ModuleManager;
 import me.ionar.salhack.module.Module;
 import me.ionar.salhack.module.Value;
+import me.ionar.salhack.module.movement.AutoWalkModule;
 import me.ionar.salhack.util.BlockInteractionHelper;
 import me.ionar.salhack.util.BlockInteractionHelper.PlaceResult;
 import me.ionar.salhack.util.BlockInteractionHelper.ValidResult;
@@ -55,7 +57,10 @@ public class ScaffoldModule extends Module
     private Listener<EventPlayerMotionUpdate> onMotionUpdate = new Listener<>(event ->
     {
         if (l_isEating)
-            return;
+            ModuleManager.Get().GetMod(ScaffoldModule.class).setEnabled(false);
+
+        if (!l_isEating)
+            ModuleManager.Get().GetMod(ScaffoldModule.class).setEnabled(true);
 
         if (event.isCancelled())
             return;
