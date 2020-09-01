@@ -96,6 +96,7 @@ public class ModuleManager
         Add(new BuildHeightModule());
         Add(new ChatModificationsModule());
         Add(new ChatNotifierModule());
+        Add(new ChatSuffixModule());
         Add(new ChestStealerModule());
         Add(new ChestSwapModule());
         Add(new DiscordRPCModule());
