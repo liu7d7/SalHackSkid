@@ -64,6 +64,7 @@ public class HudManager
         Add(new NearestPlayerRender());
         Add(new WelcomeComponent());
         Add(new BedCountComponent());
+        Add(new ServerLaggingComponent());
 
         /// MUST be last in list
         Add(new SelectorMenuComponent());
