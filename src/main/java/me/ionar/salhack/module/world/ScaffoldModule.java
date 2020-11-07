@@ -4,6 +4,7 @@ import me.ionar.salhack.events.MinecraftEvent.Era;
 import me.ionar.salhack.events.network.EventNetworkPacketEvent;
 import me.ionar.salhack.events.player.EventPlayerMotionUpdate;
 import me.ionar.salhack.events.player.EventPlayerMove;
+import me.ionar.salhack.events.player.EventPlayerUpdate;
 import me.ionar.salhack.managers.ModuleManager;
 import me.ionar.salhack.module.Module;
 import me.ionar.salhack.module.Value;
@@ -24,6 +25,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraftforge.event.world.NoteBlockEvent;
 
 import static java.lang.Double.isNaN;
 
@@ -52,16 +54,11 @@ public class ScaffoldModule extends Module
     private Timer _timer = new Timer();
     private Timer _towerPauseTimer = new Timer();
     private Timer _towerTimer = new Timer();
+    private Timer _eatTimer = new Timer();
     
     @EventHandler
     private Listener<EventPlayerMotionUpdate> onMotionUpdate = new Listener<>(event ->
     {
-        if (l_isEating)
-            ModuleManager.Get().GetMod(ScaffoldModule.class).setEnabled(false);
-
-        if (!l_isEating)
-            ModuleManager.Get().GetMod(ScaffoldModule.class).setEnabled(true);
-
         if (event.isCancelled())
             return;
         
@@ -120,6 +117,8 @@ public class ScaffoldModule extends Module
                 
             }
         }
+
+
         
         if (placeAtFeet)
             toPlaceAt = feetBlock;
@@ -206,6 +205,16 @@ public class ScaffoldModule extends Module
             // reset this if we flagged the anticheat
             _towerTimer.reset();
         }
+    });
+
+    @EventHandler
+    private Listener<EventPlayerUpdate> OnPlayerUpdate = new Listener<>(p_Event -> {
+       if (PlayerUtil.IsEating()) {
+           ModuleManager.Get().GetMod(ScaffoldModule.class).setEnabled(false);
+           if (_eatTimer.passed(2000)) {
+               ModuleManager.Get().GetMod(ScaffoldModule.class).setEnabled(true);
+           }
+       }
     });
 
     @EventHandler

@@ -35,8 +35,7 @@ public final class AutoTotemModule extends Module
     public final Value<Boolean> OffhandGapOnSword = new Value<Boolean>("SwordGap", new String[] {"SwordGap"}, "Will override all else, and try and use a gap in offhand when using a sword in main hand", false);
     public final Value<Boolean> OffhandStrNoStrSword = new Value<Boolean>("StrGap", new String[] {"Strength"}, "Will put a potion if offhand if you don't have strength and wearing a sword", false);
     public final Value<Boolean> HotbarFirst = new Value<Boolean>("HotbarFirst", new String[] {"Recursive"}, "Prioritizes your hotbar before inventory slots", false);
-    
-    
+
     public enum AutoTotemMode
     {
         Totem,

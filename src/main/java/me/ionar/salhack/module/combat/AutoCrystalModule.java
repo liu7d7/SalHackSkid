@@ -72,9 +72,9 @@ public class AutoCrystalModule extends Module
     public static final Value<Integer> Ticks = new Value<Integer>("Ticks" , new String[] {"Ticks"} , "Ticks", 1, 0, 10, 1);
 
     /// Range
-    public static final Value<Float> DestroyDistance = new Value<Float>("DestroyDistance", new String[] {""}, "Destrou crystal range", 4.0f, 0.0f, 5.0f, 0.5f);
-    public static final Value<Float> PlaceDistance = new Value<Float>("PlaceDistance", new String[] {""}, "Place range", 4.0f, 0.0f, 5.0f, 0.5f);
-    public static final Value<Float> WallsRange = new Value<Float>("WallsRange", new String[] {""}, "Max distance through walls", 3.5f, 0.0f, 5.0f, 0.5f);
+    public static final Value<Float> DestroyDistance = new Value<Float>("DestroyDistance", new String[] {""}, "Destrou crystal range", 4.0f, 0.0f, 8.0f, 0.5f);
+    public static final Value<Float> PlaceDistance = new Value<Float>("PlaceDistance", new String[] {""}, "Place range", 4.0f, 0.0f, 8.0f, 0.5f);
+    public static final Value<Float> WallsRange = new Value<Float>("WallsRange", new String[] {""}, "Max distance through walls", 3.5f, 0.0f, 8.0f, 0.5f);
     
     /// Damage
     public static final Value<Float> MinDMG = new Value<Float>("MinDMG", new String[] {""}, "Minimum dmg for placing crystals near target", 4.0f, 0.0f, 20.0f, 1.0f);
