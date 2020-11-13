@@ -139,6 +139,7 @@ public class MenuComponent
         RenderUtil.drawRect(GetX() + GetWidth() - 1, GetY() + 13 - p_OffsetY, GetX() + GetWidth(), GetY() + GetHeight(), 0xff333cc4); //vertical right
         RenderUtil.drawRect(GetX(), GetY() + 13 - p_OffsetY, GetX() + GetWidth(), GetY() + 14 - p_OffsetY, 0xff333cc4); //horizontal top
         RenderUtil.drawRect(GetX(), GetY() + GetHeight() - 1, GetX() + GetWidth(), GetY() + GetHeight(), 0xff333cc4); //horizontal bottom
+        RenderUtil.drawRect(GetX() + 1, GetY() + 1, GetX() + GetWidth() - 1, GetY() + GetHeight() - 1, 0x70333cc4); //complete
         RenderUtil.drawGradientRect(GetX(), GetY() - p_OffsetY, GetX() + GetWidth(), GetY() + 13 - p_OffsetY, 0xff333cc4, 0xff333cc4); /// top
         FontManager.Get().TwCenMtStd28.drawStringWithShadow(GetDisplayName(), GetX() + 2, GetY() + 1-p_OffsetY, GetTextColor());
 

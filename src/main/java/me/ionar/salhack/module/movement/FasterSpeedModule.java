@@ -206,8 +206,10 @@ public class FasterSpeedModule extends Module
                     moveForward = -1.0f;
                 }
             }
-            p_Event.X = ((moveForward * playerSpeed) * Math.cos(Math.toRadians((rotationYaw + 90.0f))) + (moveStrafe * playerSpeed) * Math.sin(Math.toRadians((rotationYaw + 90.0f))));
-            p_Event.Z = ((moveForward * playerSpeed) * Math.sin(Math.toRadians((rotationYaw + 90.0f))) - (moveStrafe * playerSpeed) * Math.cos(Math.toRadians((rotationYaw + 90.0f))));
+            double cos = Math.cos(Math.toRadians((rotationYaw + 90.0f)));
+            double sin = Math.sin(Math.toRadians((rotationYaw + 90.0f)));
+            p_Event.X = ((moveForward * playerSpeed) * cos + (moveStrafe * playerSpeed) * sin);
+            p_Event.Z = ((moveForward * playerSpeed) * sin - (moveStrafe * playerSpeed) * cos);
         }
         p_Event.cancel();
     });
