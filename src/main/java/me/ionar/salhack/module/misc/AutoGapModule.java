@@ -76,7 +76,6 @@ public class AutoGapModule extends Module
                 }
                 m_WasEating = false;
                 mc.gameSettings.keyBindUseItem.pressed = true;
-                return;
             }
             else {
                 mc.playerController.processRightClick(mc.player, mc.world, EnumHand.MAIN_HAND);

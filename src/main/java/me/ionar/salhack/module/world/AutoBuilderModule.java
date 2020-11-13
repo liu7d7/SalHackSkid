@@ -30,6 +30,7 @@ import me.ionar.salhack.util.Timer;
 import me.ionar.salhack.util.entity.PlayerUtil;
 import me.ionar.salhack.util.render.RenderUtil;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockNetherrack;
 import net.minecraft.block.BlockObsidian;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
@@ -892,9 +893,11 @@ public class AutoBuilderModule extends Module
             final ItemStack stack = Minecraft.getMinecraft().player.inventory.getStackInSlot(i);
             if (stack.getItem() instanceof ItemBlock)
             {
-                final ItemBlock block = (ItemBlock) stack.getItem();
-                
-                return new Pair<Integer, Block>(i, block.getBlock());
+                if (((ItemBlock) stack.getItem()).getBlock() != Blocks.NETHERRACK) {
+                    final ItemBlock block = (ItemBlock) stack.getItem();
+
+                    return new Pair<Integer, Block>(i, block.getBlock());
+                }
             }
         }
         return null;
