@@ -47,7 +47,6 @@ public class ModuleManager
         Add(new AimbotModule());
         Add(new AntiBots());
         Add(new AntiCityBossModule());
-        Add(new Auto32kModule());
         Add(new AutoArmorModule());
         Add(new BedAuraModule());
         Add(new AutoCityModule());
@@ -96,6 +95,7 @@ public class ModuleManager
         Add(new BuildHeightModule());
         Add(new ChatModificationsModule());
         Add(new ChatNotifierModule());
+        Add(new ChatSuffixModule());
         Add(new ChestStealerModule());
         Add(new ChestSwapModule());
         Add(new DiscordRPCModule());
@@ -114,6 +114,8 @@ public class ModuleManager
         Add(new BlinkModule());
         Add(new ElytraFlyModule());
         Add(new EntityControlModule());
+        Add(new EntitySpeedModule());
+        Add(new EntityStepModule());
         Add(new FlightModule());
         Add(new NoFallModule());
         Add(new NoRotateModule());

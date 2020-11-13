@@ -124,7 +124,7 @@ public class NearestPlayerRender extends HudComponentItem
         RenderUtil.drawStringWithShadow("Health: " + (HealthColour + l_Health), GetX()+4, GetY()+21, -1);
         //RenderUtil.drawStringWithShadow("Pops: " + TotemCountComponent.l_count, GetX()+4, GetY()+31, -1);
 
-        this.SetWidth(120);
+        this.SetWidth(l_Entity.getName().length() + 120);
         this.SetHeight(33);
     }
 

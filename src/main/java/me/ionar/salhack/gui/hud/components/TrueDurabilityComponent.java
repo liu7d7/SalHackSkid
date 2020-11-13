@@ -27,14 +27,14 @@ public class TrueDurabilityComponent extends HudComponentItem
 
         ItemStack l_Stack = mc.player.getHeldItemMainhand();
 
-        if (!l_Stack.isEmpty() && (l_Stack.getItem() instanceof ItemTool || l_Stack.getItem() instanceof ItemArmor || l_Stack.getItem() instanceof ItemSword))
-        {
+        //if (!l_Stack.isEmpty() && (l_Stack.getItem() instanceof ItemTool || l_Stack.getItem() instanceof ItemArmor || l_Stack.getItem() instanceof ItemSword))
+        //{
             final String l_Durability = ChatFormatting.GRAY + "Durability: " + ChatFormatting.GREEN + (l_Stack.getMaxDamage()-l_Stack.getItemDamage());
             
             RenderUtil.drawStringWithShadow(l_Durability, GetX(), GetY(), -1);
 
             SetWidth(RenderUtil.getStringWidth(l_Durability));
             SetHeight(RenderUtil.getStringHeight(l_Durability));
-        }
+        //}
     }
 }

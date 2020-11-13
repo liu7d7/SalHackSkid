@@ -44,16 +44,13 @@ public class BedAuraModule extends Module {
             {"R"}, "Radius for right clicking beds", 4, 0, 5, 0);
     public final Value<Float> RequiredHealth = new Value<Float>("RequiredHealth", new String[]
             {"RH"}, "RequiredHealth for BedAura to function, must be above or equal to this amount.", 11.0f, 0.0f, 20.0f, 1.0f);
-    // Read the to do.
-//    public final Value<Boolean> EnableHotbarCache = new Value<Boolean>("EnableHotbarCache", new String[]
-//            { "EHC" }, "Enables hotbar cache if not already enabled. ", true);
+    public final Value<Boolean> EnableHotbarCache = new Value<Boolean>("EnableHotbarCache", new String[]
+            { "EHC" }, "Enables hotbar cache if not already enabled. ", true);
 
     public BedAuraModule() {
         super("BedAura", new String[]{"BedAura"}, "Automatically right clicks beds.", "NONE", 0xFFFB11, Module.ModuleType.COMBAT);
     }
 
-    /* This causes crash when trying to launch. I do not know why.
-    //TODO Fix crash on launch issue.
     @Override
     public void onEnable() {
         super.onEnable();
@@ -66,7 +63,6 @@ public class BedAuraModule extends Module {
                 mod.toggle();
         }
     }
-*/
 
     @EventHandler
     private Listener<EventPlayerMotionUpdate> OnPlayerUpdate = new Listener<>(p_Event ->

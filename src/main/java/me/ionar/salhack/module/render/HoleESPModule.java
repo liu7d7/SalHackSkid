@@ -31,7 +31,7 @@ public class HoleESPModule extends Module
     public final Value<HoleModes> HoleMode = new Value<HoleModes>("Mode", new String[] {"HM"}, "Mode for rendering holes", HoleModes.FlatOutline);
     public final Value<Integer> Radius = new Value<Integer>("Radius", new String[] { "Radius", "Range", "Distance" }, "Radius in blocks to scan for holes.", 8, 0, 32, 1);
     public final Value<Boolean> IgnoreOwnHole = new Value<Boolean>("IgnoreOwnHole", new String[] {"NoSelfHole"}, "Doesn't render the hole you're standing in", false);
-    
+
     /// Colors
     public final Value<Float> ObsidianRed = new Value<Float>("ObsidianRed", new String[] {"oRed"}, "Red for rendering", 0f, 0f, 1.0f, 0.1f);
     public final Value<Float> ObsidianGreen = new Value<Float>("ObsidianGreen", new String[] {"oGreen"}, "Green for rendering", 1f, 0f, 1.0f, 0.1f);
@@ -50,7 +50,7 @@ public class HoleESPModule extends Module
 
     public final List<Hole> holes = new ArrayList<>();
     private ICamera camera = new Frustum();
-    
+
     @EventHandler
     private Listener<EventPlayerUpdate> OnPlayerUpdate = new Listener<>(p_Event ->
     {
@@ -72,18 +72,18 @@ public class HoleESPModule extends Module
                             continue;
 
                         final IBlockState blockState = mc.world.getBlockState(blockPos);
-    
+
                         HoleTypes l_Type = isBlockValid(blockState, blockPos);
-    
+
                         if (l_Type != HoleTypes.None)
                         {
                             final IBlockState downBlockState = mc.world.getBlockState(blockPos.down());
                             if (downBlockState.getBlock() == Blocks.AIR)
                             {
                                 final BlockPos downPos = blockPos.down();
-    
+
                                 l_Type = isBlockValid(downBlockState, blockPos);
-    
+
                                 if (l_Type != HoleTypes.None)
                                 {
                                     this.holes.add(new Hole(downPos.getX(), downPos.getY(), downPos.getZ(), downPos, l_Type, true));

@@ -27,7 +27,7 @@ public final class HudModule extends Module
     public final Value<Boolean> CustomFOV = new Value<Boolean>("CustomFOV", new String[]
     { "CustomFOV" }, "Enables the option below", false);
     public final Value<Float> FOV = new Value<Float>("FOV", new String[]
-    { "FOV" }, "Override the clientside FOV", mc.gameSettings.fovSetting, 0f, 170f, 10f);
+    { "FOV" }, "Override the clientside FOV", mc.gameSettings.fovSetting, 0f, 360f, 10f);
     public final Value<Boolean> NoHurtCam = new Value<Boolean>("NoHurtCam", new String[]
     { "NoHurtCam" }, "Disables hurt camera effect", true);
     public final Value<Boolean> NoBob = new Value<Boolean>("NoBob", new String[]

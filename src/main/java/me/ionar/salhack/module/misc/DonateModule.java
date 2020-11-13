@@ -1,7 +1,5 @@
 package me.ionar.salhack.module.misc;
 
-import me.ionar.salhack.module.world.NukerBypassModule;
-import net.minecraft.util.Util;
 import java.awt.Desktop;
 import java.net.URI;
 

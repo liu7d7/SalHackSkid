@@ -128,6 +128,12 @@ public class NukerBypassModule extends Module
 
                     if (Mode.getValue() == Modes.Creative) {
                         mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
+                        try {
+                            Thread.sleep(1);
+                        } catch (InterruptedException ignored) {
+
+                        }
+                        continue;
                     }
 
                     if (state.getBlock() == Blocks.BEDROCK || state.getBlock() == Blocks.AIR || state.getBlock() == Blocks.WATER)
@@ -167,6 +173,11 @@ public class NukerBypassModule extends Module
 
                     if (Mode.getValue() == Modes.Creative) {
                         mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
+                        try {
+                            Thread.sleep(1);
+                        } catch (InterruptedException ignored) {
+
+                        }
                         continue;
                     }
 
@@ -211,6 +222,7 @@ public class NukerBypassModule extends Module
                         if (Mode.getValue() == Modes.Creative) {
                             mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
                             _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+
                             continue;
                         }
 
@@ -255,6 +267,7 @@ public class NukerBypassModule extends Module
                         if (Mode.getValue() == Modes.Creative) {
                             mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
                             _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+
                             continue;
                         }
 
@@ -292,7 +305,9 @@ public class NukerBypassModule extends Module
                         if (Mode.getValue() == Modes.Creative) {
                             mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
                             _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+
                             continue;
+
                         }
 
                         if (ClickSelect.getValue()) {
@@ -337,6 +352,7 @@ public class NukerBypassModule extends Module
                         if (Mode.getValue() == Modes.Creative) {
                             mc.player.connection.sendPacket(new CPacketPlayerDigging(Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
                             _lastPlayerPos = PlayerUtil.GetLocalPlayerPosFloored();
+
                             continue;
                         }
 
