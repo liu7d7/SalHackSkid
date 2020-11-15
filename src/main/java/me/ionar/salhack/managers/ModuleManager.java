@@ -193,6 +193,7 @@ public class ModuleManager
         Add(new FasterSpeedModule());
         Add(new SafeWalkModule());
         Add(new AutoBuilderModule());
+        Add(new HasteModule());
         Add(new AutoToolModule());
         Add(new AutoTunnelModule());
         Add(new EnderChestFarmer());

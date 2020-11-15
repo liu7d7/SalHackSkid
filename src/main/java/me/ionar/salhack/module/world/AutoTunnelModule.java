@@ -660,14 +660,11 @@ public class AutoTunnelModule extends Module
                     BlockManager.Update(5.0f, true);
                     break;
                 case Packet:
-                    IBlockState l2_State = mc.world.getBlockState(PlayerUtil.GetLocalPlayerPosFloored().up().west().west().west());
-                    if (l2_State != Blocks.NETHERRACK) {
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.connection.sendPacket(new CPacketPlayerDigging(
-                                CPacketPlayerDigging.Action.START_DESTROY_BLOCK, toDestroy, EnumFacing.UP));
-                        mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK,
-                                toDestroy, EnumFacing.UP));
-                    }
+                    mc.player.swingArm(EnumHand.MAIN_HAND);
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(
+                            CPacketPlayerDigging.Action.START_DESTROY_BLOCK, toDestroy, EnumFacing.UP));
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK,
+                            toDestroy, EnumFacing.UP));
                     break;
                 default:
                     break;
