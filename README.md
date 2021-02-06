@@ -3,10 +3,10 @@ Ethius is the IGN of the guy that made the modifications to SalHack and created 
 ## Salhack
 Salhack is a Forge mod made by ionar. A few months ago, ionar has made the decision to leave the project, and therefore someone that wanted to buid the highway system on endcrystal.me decided to make this thing.
 
-SalHackSkid is maintained.
+SalHackSkid is no longer maintained.
  
 ## Installation
-SalHackSkid is a forge mod for `1.12.2` that was based off Salhack. We provide already pre build jar files on our [release page](https://github.com/pleasegivesource/SalHackSkid/releases). To use salhack just drop the jar file in your mods folder and start forge. Have fun!
+SalHackSkid is a forge mod for `1.12.2` that was based off Salhack. We provide already pre build jar files on our [release page](https://github.com/pleasegivesource/SalHackSkid/releases). To use SalHackSkid just drop the jar file in your mods folder and start forge. Have fun!
 
 **Tip:** You can open the GUI containing all "tweaks" with your left arrow at default (You can change that later.)
 
