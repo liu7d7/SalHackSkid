@@ -1,4 +1,4 @@
-Ethius is the IGN of the guy that made the modifications to SalHack and created this thing. Also thanks to r333mo for making some combat features that I would've never thought of doing.
+Ethius is the IGN of the guy that made the modifications to SalHack and created this thing. Also thanks to r333mo for making some combat features that I would've never thought of doing. 
 
 ## Salhack
 Salhack is a Forge mod made by ionar. A few months ago, ionar has made the decision to leave the project, and therefore someone that wanted to buid the highway system on endcrystal.me decided to make this thing.
